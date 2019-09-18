@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     Vector3 movement;
 
-    bool sprinting;
-    bool sneaking;
+    public bool sprinting;
+    public bool sneaking;
 
 
     // Start is called before the first frame update
