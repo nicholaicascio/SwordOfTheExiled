@@ -24,7 +24,104 @@ public class LaserRaycast : MonoBehaviour
                 //cube = hit.collider.gameObject;
                 
                 prism = hit.collider.gameObject.GetComponent<Prism>();
-                prism.setColor(this.color);
+                string prismColor;
+                prismColor = prism.getColor();
+
+                if (this.color == "blue")
+                {
+                    if (prismColor == "red")
+                    {
+                        prism.setColor("magenta");
+                    }
+                    else if (prismColor == "blue")
+                    {
+                        prism.setColor("blue");
+                    }
+                    else if(prismColor == "green")
+                    {
+                        prism.setColor("cyan");
+                    }
+                    else if (prismColor == "magenta")
+                    {
+
+                    }
+                    else if (prismColor == "cyan")
+                    {
+
+                    }
+                    else if (prismColor == "yellow")
+                    {
+
+                    }
+                    else
+                    {
+                        prism.setColor(this.color);
+                    }
+                }
+                if (this.color == "red")
+                {
+                    if (prismColor == "red")
+                    {
+                        prism.setColor("red");
+                    }
+                    else if (prismColor == "blue")
+                    {
+                        prism.setColor("magenta");
+                    }
+                    else if (prismColor == "green")
+                    {
+                        prism.setColor("yellow");
+                    }
+                    else if (prismColor == "magenta")
+                    {
+
+                    }
+                    else if (prismColor == "cyan")
+                    {
+
+                    }
+                    else if (prismColor == "yellow")
+                    {
+
+                    }
+                    else
+                    {
+                        prism.setColor(this.color);
+                    }
+                }
+                if (this.color == "green")
+                {
+                    if (prismColor == "red")
+                    {
+                        prism.setColor("yellow");
+                    }
+                    else if (prismColor == "blue")
+                    {
+                        prism.setColor("cyan");
+                    }
+                    else if (prismColor == "green")
+                    {
+                        prism.setColor("green");
+                    }
+                    else if (prismColor == "magenta")
+                    {
+
+                    }
+                    else if (prismColor == "cyan")
+                    {
+
+                    }
+                    else if (prismColor == "yellow")
+                    {
+
+                    }
+                    else
+                    {
+                        prism.setColor(this.color);
+                    }
+                }
+
+                //prism.setColor(this.color);
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 Debug.Log(hit.collider.gameObject.name);
             }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Prism : MonoBehaviour
 {
     public string outColor;
-    public GameObject red, blue, green;
+    public GameObject red, blue, green, magenta, cyan, yellow;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +27,18 @@ public class Prism : MonoBehaviour
         {
             green.SetActive(true);
         }
+        if (outColor == "magenta")
+        {
+            magenta.SetActive(true);
+        }
+        if (outColor == "cyan")
+        {
+            cyan.SetActive(true);
+        }
+        if (outColor == "yellow")
+        {
+            yellow.SetActive(true);
+        }
         if (outColor != "red")
         {
             red.SetActive(false);
@@ -39,6 +51,22 @@ public class Prism : MonoBehaviour
         {
             green.SetActive(false);
         }
+        if (outColor != "magenta")
+        {
+            magenta.SetActive(false);
+        }
+        if (outColor != "cyan")
+        {
+            cyan.SetActive(false);
+        }
+        if (outColor != "yellow")
+        {
+            yellow.SetActive(false);
+        }
+    }
+    public string getColor()
+    {
+        return outColor;
     }
 
     public void setColor(string col)
