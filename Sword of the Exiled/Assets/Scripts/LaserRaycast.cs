@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LaserRaycast : MonoBehaviour
 {
+    public string color;
+    public Prism prism;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +19,23 @@ public class LaserRaycast : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
-            if (hit.collider.tag == "UpPrism")
+            if (hit.collider.tag == "Prism")
             {
+                //cube = hit.collider.gameObject;
+                
+                prism = hit.collider.gameObject.GetComponent<Prism>();
+                prism.setColor(this.color);
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 Debug.Log(hit.collider.gameObject.name);
+            }
+            else if (prism != null)
+            {
+                prism.setColor(null);
+                prism = null;
             }
             else
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.white);
-                //Debug.Log("Did not Hit");
             }
         }
 
