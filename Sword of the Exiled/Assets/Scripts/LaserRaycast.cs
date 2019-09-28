@@ -41,15 +41,7 @@ public class LaserRaycast : MonoBehaviour
                     {
                         prism.setColor("cyan");
                     }
-                    else if (prismColor == "magenta")
-                    {
-
-                    }
-                    else if (prismColor == "cyan")
-                    {
-
-                    }
-                    else if (prismColor == "yellow")
+                    else if (prismColor == "magenta" || prismColor == "cyan" || prismColor == "yellow")
                     {
 
                     }
@@ -72,15 +64,7 @@ public class LaserRaycast : MonoBehaviour
                     {
                         prism.setColor("yellow");
                     }
-                    else if (prismColor == "magenta")
-                    {
-
-                    }
-                    else if (prismColor == "cyan")
-                    {
-
-                    }
-                    else if (prismColor == "yellow")
+                    else if (prismColor == "magenta" || prismColor == "cyan" || prismColor == "yellow")
                     {
 
                     }
@@ -103,15 +87,7 @@ public class LaserRaycast : MonoBehaviour
                     {
                         prism.setColor("green");
                     }
-                    else if (prismColor == "magenta")
-                    {
-
-                    }
-                    else if (prismColor == "cyan")
-                    {
-
-                    }
-                    else if (prismColor == "yellow")
+                    else if (prismColor == "magenta" || prismColor == "cyan" || prismColor == "yellow")
                     {
 
                     }
@@ -123,7 +99,7 @@ public class LaserRaycast : MonoBehaviour
 
                 //prism.setColor(this.color);
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
-                Debug.Log(hit.collider.gameObject.name);
+                //Debug.Log(hit.collider.gameObject.name);
             }
             else if (prism != null)
             {
