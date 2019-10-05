@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RunToLastSightingState : State
 {
-    Transform destination;
+    Vector3 destination;
 
     /// <summary>
     /// This is the constructor.  Just use it.
@@ -39,10 +39,10 @@ public class RunToLastSightingState : State
         {
             //Debug.Log("Current destination is: " + destination.ToString());
             //Get the next nav point, and set it as the ai target.
-            destination = stateController.gs.personalLastSightingTransform;
+            destination = stateController.gs.personalLastSighting;
 
             //Debug.Log("New Destiation is: " + destination.ToString());
-            stateController.ai.SetTarget(destination);
+            stateController.ai.agent.SetDestination(destination);
         }
 
         //Next, we'll see if the player can be heard.  If so, we'll update the position we're going to.
@@ -50,8 +50,8 @@ public class RunToLastSightingState : State
         {
             Debug.Log("We hear the player.  So go to where we can hear them.");
             //Get the next nav point, and set it as the ai target.
-            destination = stateController.gs.personalLastSightingTransform;
-            stateController.ai.SetTarget(destination);
+            destination = stateController.gs.personalLastSighting;
+            stateController.ai.agent.SetDestination(destination);
         }
     }
 
@@ -60,9 +60,12 @@ public class RunToLastSightingState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
+        stateController.ai.SetTarget(null);
+
         //First, set the next nav as the last sighting area.
-        destination = stateController.gs.personalLastSightingTransform;
-        stateController.ai.SetTarget(destination);
+        destination = stateController.gs.personalLastSighting;
+        stateController.ai.agent.SetDestination(destination);
 
         //Now, change the color to yellow.
         stateController.ChangeColor(Color.yellow);

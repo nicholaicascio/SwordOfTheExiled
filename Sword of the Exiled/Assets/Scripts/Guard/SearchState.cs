@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SearchState : State
 {
-    Transform destination;
+    Vector3 destination;
     private float timecheck;        //For some reason, Time.time returns the number of seconds since the beginning fo the game.  So we'll track that here.
 
     /// <summary>
@@ -49,6 +49,9 @@ public class SearchState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
+        stateController.ai.SetTarget(null);
+
         //Now, change the color to magenta.
         stateController.ChangeColor(Color.magenta);
 

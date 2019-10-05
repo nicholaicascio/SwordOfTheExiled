@@ -10,8 +10,6 @@ public class LastPlayerSighting : MonoBehaviour
 
     public Vector3 resetPosition;
     public Vector3 position;
-    public Transform resetTransform;
-    public Transform transform;
 
     void Start()
     {

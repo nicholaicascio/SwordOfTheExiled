@@ -37,46 +37,8 @@ public class GuardSight : MonoBehaviour
         //Here, we'll make sure that the last place the player was sighted is the same as the current place the player exists so that we don't chase them.
         //TODO:  Might change this to work differently in our game.
         personalLastSighting = lastPlayerSighting.resetPosition;
-        personalLastSightingTransform = lastPlayerSighting.resetTransform;
         previousSighting = lastPlayerSighting.resetPosition;
-        previousSightingTransform = lastPlayerSighting.resetTransform;
 
-
-        //So, I'm just going to do some quick checks here to see if stuff exits or not.
-        if (agent == null)
-        {
-            Debug.Log("Guard Sight: agent is null");
-        }
-    
-        if (sightCone == null)
-        {
-            Debug.Log("Guard Sight: sightCone is null");
-        }
-
-        if(anim == null)
-        {
-            Debug.Log("Guard Sight: anim is null");
-        }
-
-        if (lastPlayerSighting == null)
-        {
-            Debug.Log("Guard Sight: lastPlayerSighting is null");
-        }
-
-        if (player == null)
-        {
-            Debug.Log("Guard Sight: player is null");
-        }
-
-        if (playerHealth == null)
-        {
-            Debug.Log("Guard Sight: playerHealth is null");
-        }
-
-        if (hash == null)
-        {
-            Debug.Log("Guard Sight: hash is null");
-        }
     }
 
 
@@ -123,15 +85,19 @@ public class GuardSight : MonoBehaviour
             //field of view goes both left and right so really we only want half.
             if (angle < fieldOfViewAngle * 0.5f)
             {
-                Debug.Log("Player within viewing angle.");
+                //Debug.Log("Player within viewing angle.");
                 //Check to see if there is something between guard and the player to make sure the player can actually be seen, and isn't just behind a wall.
                 RaycastHit hit;
 
-                //Accordind to this tutorial, the place the ray cast starts from is the enemy feet.  They don't want to cast against the floor, so they move it up.  I'm
+                //According to this tutorial, the place the ray cast starts from is the enemy feet.  They don't want to cast against the floor, so they move it up.  I'm
                 //not sure if we have that issue.  Also, their unit is 2M tall, and I guess transform.up moves it up 1 meter.  We may need to change this.
                 //TODO:  Make sure we transform this correctly so that we have a good idea of what is being ray cast against.
-                if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, sightCone.radius))
+                //if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, sightCone.radius))
+                if (Physics.Raycast(transform.position, direction.normalized, out hit, sightCone.radius))
                 {
+                    //Debug.Log("Looking out " + sightCone.radius + " units for player.");
+                    //Debug.Log("PLayer is " + Vector3.Distance(player.transform.position, transform.position) + " units away.");
+                    //Debug.DrawRay(transform.position + transform.up, direction.normalized, Color.red);
                     //Make sure that we actually hit the player.
                     if (hit.collider.gameObject == player)
                     {
@@ -139,14 +105,14 @@ public class GuardSight : MonoBehaviour
                         //TODO:  Determine if we really want to do this or not.  Maybe we don't.  
                         playerInSight = true;
                         lastPlayerSighting.position = player.transform.position;
-                        lastPlayerSighting.transform = player.transform;
                         Debug.Log("Player hit by raycast.  We see them.  Not a wall or something.");
                     }
                 }
             }
             //Debug.Log("Check to see if player can be heard.");
-            //Debug.Log("Current player state is: " + playerStateController.getCurrentPlayerState());
-            //Debug.Log("Current distance to player is: " + CalculatePathLength(player.transform.position));
+            Debug.Log("Current player state is: " + playerStateController.getCurrentPlayerState());
+            Debug.Log("Current distance to player is: " + CalculatePathLength(player.transform.position));
+            //Debug.Log("Check remaining distance: " + agent.remainingDistance);
             //Now, deal with the player being heard, rather than seen.  I guess players can run and shout.  Check the states.
             //So here's what we'll do.  If the player is running, they can be heard from as far away as their sight cone allows.
             if (playerStateController.getCurrentPlayerState() == PlayerStateController.PlayerStateType.sprinting)
@@ -163,7 +129,7 @@ public class GuardSight : MonoBehaviour
                 }
             }
             //If the player is in the normal state, they can be heard from half the distance of the sight cone.
-            else if(playerStateController.getCurrentPlayerState() == PlayerStateController.PlayerStateType.normal)
+            else if (playerStateController.getCurrentPlayerState() == PlayerStateController.PlayerStateType.normal)
             {
                 //Debug.Log("Current chase radius for normal player is: " + sightCone.radius * 0.5f);
                 //When the guard hears the player, it may not be in a straight line.  The player may be around the corner, or in a different room.
@@ -230,9 +196,14 @@ public class GuardSight : MonoBehaviour
         for(int i = 0; i < allWayPoints.Length-1; i++)
         {
             pathLength += Vector3.Distance(allWayPoints[i], allWayPoints[i + 1]);
-        }
+        }        //Now, add all the values of the lengths between the waypoints.  Easy peasy.
+        //for (int i = 0; i < allWayPoints.Length; i++)
+        //{
+        //    Debug.Log("Waypoint #" + i + " is: " + allWayPoints[i]);
+        //}
 
         //Debug.Log("SO, there are " + allWayPoints.Length + " points we are calculating from " + allWayPoints[0] + " to " + allWayPoints[allWayPoints.Length - 1]);
+        
 
         //Send the total distance we calculated back.
         return pathLength;

@@ -21,16 +21,18 @@ public class StateController : MonoBehaviour
 
     public GuardSight gs;       //This is going to be a reference to the guard sight script so that we can use it in different states.
 
+    public GameObject spawnObject;
+
     /// <summary>
     /// Get the transform of the next navpoint to head to.
     /// </summary>
     /// <returns></returns>
-    public Transform GetNextNavPoint()
+    public Vector3 GetNextNavPoint()
     {
         //Debug.Log("Current nav point [" + navPointNum + " ] reached.");
         navPointNum = (navPointNum + 1) % navPoints.Length;
         //Debug.Log("Now moving to nav point [" + navPointNum + "]");
-        return navPoints[navPointNum].transform;
+        return navPoints[navPointNum].transform.position;
     }
 
     /// <summary>
@@ -123,4 +125,14 @@ public class StateController : MonoBehaviour
             currentState.OnStateEnter();
         }
     }
+    /// <summary>
+    /// This was just something I did for Dr. Dan for class.  We had to have a state that would create new ai dudes.
+    ///// </summary>
+    //public void NewGuard()
+    //{
+    //   GameObject newGuard =  Instantiate(spawnObject, new Vector3(0, 0, 0), Quaternion.identity);
+    //   StateController fun = newGuard.GetComponent<StateController>();
+    //    fun.spawnObject = spawnObject;
+
+    //}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChaseState : State
 {
-    Transform destination;
+    Vector3 destination;
 
     public ChaseState(StateController stateController) : base(stateController) { }
 
@@ -26,8 +26,8 @@ public class ChaseState : State
     public override void Act()
     {
         //Get the next nav point, and set it as the ai target.
-        destination = stateController.gs.personalLastSightingTransform;
-        stateController.ai.SetTarget(destination);
+        destination = stateController.gs.personalLastSighting;
+        stateController.ai.agent.SetDestination(destination);
     }
 
     /// <summary>
@@ -35,6 +35,9 @@ public class ChaseState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
+        stateController.ai.SetTarget(null);
+
         //First, set the color to red.
         stateController.ChangeColor(Color.red);
 

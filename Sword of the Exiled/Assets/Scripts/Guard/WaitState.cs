@@ -17,6 +17,9 @@ public class WaitState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
+        stateController.ai.SetTarget(null);
+
         //Now, change the color to green.
         stateController.ChangeColor(Color.green);
 
@@ -26,6 +29,14 @@ public class WaitState : State
         //Set our timer so that we can see how long we've been waiting.
         timecheck = Time.time;
     }
+
+    /// <summary>
+    /// This was just something I did for Dr. Dan for class.  We had to have a state that would create new ai dudes.
+    /// </summary>
+    //public override void OnStateExit()
+    //{
+    //    stateController.NewGuard();
+    //}
 
     /// <summary>
     /// What to do in the wait state.

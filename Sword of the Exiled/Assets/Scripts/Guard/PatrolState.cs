@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PatrolState : State
 {
-    Transform destination;
+    Vector3 destination;
 
     /// <summary>
     /// This is the constructor.  Just use it.
@@ -48,7 +48,7 @@ public class PatrolState : State
             destination = stateController.GetNextNavPoint();
 
             //Debug.Log("New Destiation is: " + destination.ToString());
-            stateController.ai.SetTarget(destination);
+            stateController.ai.agent.SetDestination(destination);
         }
     }
 
@@ -57,9 +57,12 @@ public class PatrolState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
+        stateController.ai.SetTarget(null);
+
         //First, set the next nav point.
         destination = stateController.GetNextNavPoint();
-        stateController.ai.SetTarget(destination);
+        stateController.ai.agent.SetDestination(destination);
 
         //Now, change the color to blue.
         stateController.ChangeColor(Color.blue);

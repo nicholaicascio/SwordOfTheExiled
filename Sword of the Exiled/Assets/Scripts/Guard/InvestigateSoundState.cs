@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InvestigateSoundState : State
 {
-    Transform destination;
+    Vector3 destination;
 
     /// <summary>
     /// This is the constructor.  Just use it.
@@ -40,17 +40,17 @@ public class InvestigateSoundState : State
         {
             //Debug.Log("Current destination is: " + destination.ToString());
             //Get the next nav point, and set it as the ai target.
-            destination = stateController.gs.personalLastSightingTransform;
+            destination = stateController.gs.personalLastSighting;
 
             //Debug.Log("New Destiation is: " + destination.ToString());
-            stateController.ai.SetTarget(destination);
+            stateController.ai.agent.SetDestination(destination);
         }
 
         //Now, we'll check to see if the player can still be heard.  Since there is no visual confirmation, the guard will still slowly investigate the sound that's probably nothing.
         if (stateController.gs.playerIsHeard)
         {
-            destination = stateController.gs.personalLastSightingTransform;
-            stateController.ai.SetTarget(destination);
+            destination = stateController.gs.personalLastSighting;
+            stateController.ai.agent.SetDestination(destination);
         }
     }
 
@@ -59,9 +59,12 @@ public class InvestigateSoundState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
+        stateController.ai.SetTarget(null);
+
         //First, set the next nav point.
-        destination = stateController.gs.personalLastSightingTransform;
-        stateController.ai.SetTarget(destination);
+        destination = stateController.gs.personalLastSighting;
+        stateController.ai.agent.SetDestination(destination);
 
         //Now, change the color to cyan.
         stateController.ChangeColor(Color.cyan);
