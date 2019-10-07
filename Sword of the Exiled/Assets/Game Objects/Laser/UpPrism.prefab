@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: blue
   prism: {fileID: 0}
+  reciever: {fileID: 0}
 --- !u!1 &5694232121770780491
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: yellow
   prism: {fileID: 0}
+  reciever: {fileID: 0}
 --- !u!1 &5694232121944214999
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: green
   prism: {fileID: 0}
+  reciever: {fileID: 0}
 --- !u!1 &5694232122067748723
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: magenta
   prism: {fileID: 0}
+  reciever: {fileID: 0}
 --- !u!1 &5694232122491948013
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,8 +802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83a22c887da06f4ca0470232e40e078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 
+  color: red
   prism: {fileID: 0}
+  reciever: {fileID: 0}
 --- !u!1 &5694232123091649984
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,3 +938,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: cyan
   prism: {fileID: 0}
+  reciever: {fileID: 0}

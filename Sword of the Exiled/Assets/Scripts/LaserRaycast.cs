@@ -6,6 +6,7 @@ public class LaserRaycast : MonoBehaviour
 {
     public string color;
     public Prism prism;
+    public Reciever reciever;
     // Start is called before the first frame update
     void Start()
     {
@@ -105,6 +106,18 @@ public class LaserRaycast : MonoBehaviour
             {
                 prism.setColor(null);
                 prism = null;
+            }
+            else if (hit.collider.tag == "Reciever")
+            {
+                reciever = hit.collider.gameObject.GetComponent<Reciever>();
+                reciever.setColor(this.color);
+                //Debug.Log("reciever hit");
+            }
+            else if (reciever != null)
+            {
+                reciever.setColor(null);
+                reciever = null;
+                Debug.Log("reciever null");
             }
             else
             {

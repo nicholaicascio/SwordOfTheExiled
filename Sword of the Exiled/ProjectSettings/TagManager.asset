@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UpPrism
   - Prism
+  - Reciever
   layers:
   - Default
   - TransparentFX
