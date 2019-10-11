@@ -109,6 +109,7 @@ public class LaserRaycast : MonoBehaviour
             }
             else if (hit.collider.tag == "Reciever")
             {
+                
                 reciever = hit.collider.gameObject.GetComponent<Reciever>();
                 reciever.setColor(this.color);
                 //Debug.Log("reciever hit");
