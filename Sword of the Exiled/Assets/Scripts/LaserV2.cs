@@ -22,6 +22,8 @@ public class LaserV2 : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
 
+            line.SetPosition(0, this.transform.position);
+            line.SetPosition(1, hit.point);
 
             if (hit.collider.tag == "Prism")
             {
