@@ -19,7 +19,7 @@ public class Reciever : MonoBehaviour
         {
             if (targetObject.gameObject.name == "BigDoorController")
             {
-                Debug.Log("open big door");
+                //Debug.Log("open big door");
                 Animator anim = targetObject.GetComponent<Animator>();
                 anim.SetBool("isOpen", true);
             }

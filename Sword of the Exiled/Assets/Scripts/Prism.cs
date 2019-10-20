@@ -6,6 +6,7 @@ public class Prism : MonoBehaviour
 {
     public string outColor;
     public GameObject red, blue, green, magenta, cyan, yellow;
+    public bool redhit, bluehit, greenhit;
     // Start is called before the first frame update
     void Start()
     {

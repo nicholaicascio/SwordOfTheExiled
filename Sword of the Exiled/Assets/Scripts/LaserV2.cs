@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LaserV2 : MonoBehaviour
 {
+    public GameObject hitted;
     public string color;
     public Prism prism;
     public Reciever reciever;
@@ -12,8 +13,17 @@ public class LaserV2 : MonoBehaviour
     void Start()
     {
         line = this.GetComponent<LineRenderer>();
+        //daddy = GetComponentInParent<Prism>();
     }
 
+    private void OnDisable()
+    {
+        if(prism != null)
+        {
+            prism.setColor(null);
+            prism = null;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -21,13 +31,18 @@ public class LaserV2 : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
-
+            
             line.SetPosition(0, this.transform.position);
             line.SetPosition(1, hit.point);
-
+            if (hit.collider.gameObject != hitted && prism != null)
+            {
+                //Debug.Log("hitted");
+                prism.setColor(null);
+                prism = null;
+                hitted = hit.collider.gameObject;
+            }
             if (hit.collider.tag == "Prism")
             {
-                //cube = hit.collider.gameObject;
 
                 prism = hit.collider.gameObject.GetComponent<Prism>();
                 string prismColor;
@@ -107,19 +122,18 @@ public class LaserV2 : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 //Debug.Log(hit.collider.gameObject.name);
             }
-            else if (prism != null)
+            if (hit.collider.tag != "Prism" && prism != null)
             {
                 prism.setColor(null);
                 prism = null;
             }
-            else if (hit.collider.tag == "Reciever")
+            if (hit.collider.tag == "Reciever")
             {
-
                 reciever = hit.collider.gameObject.GetComponent<Reciever>();
                 reciever.setColor(this.color);
                 //Debug.Log("reciever hit");
             }
-            else if (reciever != null)
+            if (hit.collider.tag != "Reciever" && reciever != null)
             {
                 reciever.setColor(null);
                 reciever = null;
