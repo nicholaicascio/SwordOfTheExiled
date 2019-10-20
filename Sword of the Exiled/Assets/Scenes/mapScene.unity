@@ -1850,11 +1850,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202304688}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 8, z: 13.5}
+  m_LocalPosition: {x: -2.2393239, y: 3.9311757, z: 17.390251}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1892218171}
-  m_RootOrder: 3
+  m_Father: {fileID: 2029337818}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &206164272
 PrefabInstance:
@@ -4801,97 +4801,6 @@ PrefabInstance:
       objectReference: {fileID: 1707439089}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab7b1a134b2ac0143b93a624faee9d1c, type: 3}
---- !u!1 &418360191
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 418360192}
-  - component: {fileID: 418360193}
-  m_Layer: 0
-  m_Name: Point Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &418360192
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418360191}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.239324, y: 3.9311757, z: 43.89025}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2029337818}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &418360193
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418360191}
-  m_Enabled: 1
-  serializedVersion: 9
-  m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 50
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 2
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!1001 &419255294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12109,7 +12018,7 @@ Transform:
   - {fileID: 950997707}
   - {fileID: 746449133}
   m_Father: {fileID: 1892218171}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &880788940 stripped
 Transform:
@@ -16009,7 +15918,7 @@ Transform:
   - {fileID: 577665067}
   - {fileID: 392233436}
   m_Father: {fileID: 1892218171}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1228290569 stripped
 Transform:
@@ -19528,7 +19437,7 @@ PrefabInstance:
     - target: {fileID: 5271157944449098655, guid: 31f18da8f57bd524eac4bc70417ab859,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5271157944449098655, guid: 31f18da8f57bd524eac4bc70417ab859,
         type: 3}
@@ -23490,7 +23399,7 @@ PrefabInstance:
     - target: {fileID: 4365138568107543190, guid: f2ea9658e42074742a546f86a5450b1c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4365138568107543190, guid: f2ea9658e42074742a546f86a5450b1c,
         type: 3}
@@ -26702,7 +26611,6 @@ Transform:
   - {fileID: 1535454276}
   - {fileID: 1068431789}
   - {fileID: 828211283}
-  - {fileID: 202304690}
   - {fileID: 1207917276}
   - {fileID: 859271277}
   - {fileID: 2046797259}
@@ -27855,7 +27763,7 @@ Transform:
   m_LocalPosition: {x: 0.23932394, y: 4.0688243, z: -3.890252}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 418360192}
+  - {fileID: 202304690}
   - {fileID: 399511403}
   - {fileID: 431227397}
   - {fileID: 559254750}
