@@ -137,7 +137,7 @@ public class LaserV2 : MonoBehaviour
             {
                 reciever.setColor(null);
                 reciever = null;
-                Debug.Log("reciever null");
+                //Debug.Log("reciever null");
             }
             else
             {
