@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5686079129412468951}
   - component: {fileID: 5686079129412468948}
   - component: {fileID: 5686079129412468949}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BlueLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22174e50328e3884da3a2b53fb67ab99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitted: {fileID: 0}
   color: blue
   prism: {fileID: 0}
   reciever: {fileID: 0}

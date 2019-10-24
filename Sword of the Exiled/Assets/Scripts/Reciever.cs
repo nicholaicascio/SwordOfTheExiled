@@ -8,6 +8,8 @@ public class Reciever : MonoBehaviour
     public string recievedColor, myColor;
     public bool secondRecieverActivated = false;
     public bool secondRecieverRequired = false;
+    public bool TwoDoors = false;
+    public GameObject[] targetObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,25 @@ public class Reciever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (myColor == recievedColor)
+        if(myColor == null)
+        {
+            foreach (GameObject door in targetObjects)
+            {
+                Animator anim = door.GetComponent<Animator>();
+                if (anim.GetBool("isOpen") == true)
+                {
+                    anim.SetBool("isOpen", false);
+                    Debug.Log("close the open door");
+                }
+                else
+                {
+                    anim.SetBool("isOpen", true);
+                    Debug.Log("Open the closed door");
+                }
+            }
+        }
+
+        if (myColor == recievedColor && TwoDoors == false)
         {
             if (targetObject.gameObject.name == "BigDoorController" && secondRecieverRequired == false)
             {
@@ -38,10 +58,39 @@ public class Reciever : MonoBehaviour
         }
     }
 
+    public void ActivateTwo()
+    {
+        if (myColor == recievedColor)
+        {
+            foreach (GameObject door in targetObjects)
+            {
+                Animator anim = door.GetComponent<Animator>();
+                if (anim.GetBool("isOpen") == true)
+                {
+                    anim.SetBool("isOpen", false);
+                    //Debug.Log("close the open door");
+                }
+                else
+                {
+                    anim.SetBool("isOpen", true);
+                    //Debug.Log("Open the closed door");
+                }
+            }
+        }
+    }
+
     public void setColor(string col)
     {
+        if (recievedColor != col && TwoDoors == true)
+        {
+            recievedColor = col;
+            ActivateTwo();
+        }
+        else if(recievedColor != col && TwoDoors == false)
+        {
+            recievedColor = col;
+        }
         //Debug.Log("setColor");
-        recievedColor = col;
     }
 
 }
