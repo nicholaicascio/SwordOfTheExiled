@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChaseState : State
 {
-    Transform destination;
+    Vector3 destination;
 
     public ChaseState(StateController stateController) : base(stateController) { }
 
@@ -13,11 +13,10 @@ public class ChaseState : State
     /// </summary>
     public override void CheckTransitions()
     {
-        //Check to see if the player is out of range.
-        if (!stateController.CheckIfInRange("Player"))
+        //So, we need to transition if we can no longer see the player.  We'll just go to the last place they were seen.
+        if (!stateController.gs.playerInSight)
         {
-            //Go back to patrolling.
-            stateController.SetState(new PatrolState(stateController));
+            stateController.SetState(new RunToLastSightingState(stateController));
         }
     }
 
@@ -26,11 +25,9 @@ public class ChaseState : State
     /// </summary>
     public override void Act()
     {
-        if(stateController.targetToChase != null)
-        {
-            destination = stateController.targetToChase.transform;
-            stateController.ai.SetTarget(destination);
-        }
+        //Get the next nav point, and set it as the ai target.
+        destination = stateController.gs.personalLastSighting;
+        stateController.ai.agent.SetDestination(destination);
     }
 
     /// <summary>
@@ -38,11 +35,14 @@ public class ChaseState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
+        stateController.ai.SetTarget(null);
+
         //First, set the color to red.
         stateController.ChangeColor(Color.red);
 
         //Next, set speed of agent.
-        stateController.ai.TargetSpeed = 0.85f;
+        stateController.ai.TargetSpeed = 0.75f;
 
     }
 }

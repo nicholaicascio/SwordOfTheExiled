@@ -8,6 +8,7 @@ TagManager:
   - Prism
   - Reciever
   - RecieverTwoDoors
+  - NavPoint
   layers:
   - Default
   - TransparentFX

@@ -16,15 +16,23 @@ public class StateController : MonoBehaviour
     public Renderer[] childrenRend;
     public GameObject[] targets;
     public float detectionRange = 5.0f;
+    public float patrolWaitTime = 2.0f;         //How long a guard should wait on patrol.  Used in the wait state at this time.
+    public float searchWaitTime = 10.0f;        //How long a guard should wait when they lost sight of a player, or heard them.
+
+    public GuardSight gs;       //This is going to be a reference to the guard sight script so that we can use it in different states.
+
+    public GameObject spawnObject;
 
     /// <summary>
     /// Get the transform of the next navpoint to head to.
     /// </summary>
     /// <returns></returns>
-    public Transform GetNextNavPoint()
+    public Vector3 GetNextNavPoint()
     {
+        //Debug.Log("Current nav point [" + navPointNum + " ] reached.");
         navPointNum = (navPointNum + 1) % navPoints.Length;
-        return navPoints[navPointNum].transform;
+        //Debug.Log("Now moving to nav point [" + navPointNum + "]");
+        return navPoints[navPointNum].transform.position;
     }
 
     /// <summary>
@@ -71,15 +79,27 @@ public class StateController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Get reference to some local stuff.
+        gs = GetComponent<GuardSight>();
+
         //Find Nav Points in the environment.
         navPoints = GameObject.FindGameObjectsWithTag("NavPoint");
+        if(navPoints == null)
+        {
+            Debug.Log("There are no nav points");
+        }
+        //else
+        //{
+        //    //Debug.Log("There are " + navPoints.Length + " navpoints");
+        //}
         ai = GetComponent<UnityStandardAssets.Characters.ThirdPerson.AICharacterControl_Modified>();
 
         //Get render components for color change.
         childrenRend = GetComponentsInChildren<Renderer>();
 
         //Set the initial state
-        SetState(new PatrolState(this));
+        //SetState(new PatrolState(this));
+        SetState(new WaitState(this));
 
     }
 
@@ -105,4 +125,14 @@ public class StateController : MonoBehaviour
             currentState.OnStateEnter();
         }
     }
+    /// <summary>
+    /// This was just something I did for Dr. Dan for class.  We had to have a state that would create new ai dudes.
+    ///// </summary>
+    //public void NewGuard()
+    //{
+    //   GameObject newGuard =  Instantiate(spawnObject, new Vector3(0, 0, 0), Quaternion.identity);
+    //   StateController fun = newGuard.GetComponent<StateController>();
+    //    fun.spawnObject = spawnObject;
+
+    //}
 }
