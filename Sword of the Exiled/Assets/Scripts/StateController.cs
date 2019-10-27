@@ -35,6 +35,11 @@ public class StateController : MonoBehaviour
         return navPoints[navPointNum].transform.position;
     }
 
+    public void updateNavs()
+    {
+        navPoints = GameObject.FindGameObjectsWithTag("NavPoint");
+
+    }
     /// <summary>
     /// Quick function that will change the color of everything to a passed in color.
     /// </summary>

@@ -9,6 +9,7 @@ TagManager:
   - Reciever
   - RecieverTwoDoors
   - NavPoint
+  - Guard
   layers:
   - Default
   - TransparentFX

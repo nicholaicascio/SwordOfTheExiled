@@ -25,7 +25,7 @@ public class GuardSight : MonoBehaviour
     {
         //Start off by setting a bunch of defaults and variables.
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        sightCone = GetComponent<SphereCollider>();
+        sightCone = GetComponentInChildren<SphereCollider>();
         anim = GetComponent<Animator>();
         lastPlayerSighting = GameObject.FindGameObjectWithTag("GameController").GetComponent<LastPlayerSighting>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -110,8 +110,8 @@ public class GuardSight : MonoBehaviour
                 }
             }
             //Debug.Log("Check to see if player can be heard.");
-            Debug.Log("Current player state is: " + playerStateController.getCurrentPlayerState());
-            Debug.Log("Current distance to player is: " + CalculatePathLength(player.transform.position));
+            //Debug.Log("Current player state is: " + playerStateController.getCurrentPlayerState());
+            //Debug.Log("Current distance to player is: " + CalculatePathLength(player.transform.position));
             //Debug.Log("Check remaining distance: " + agent.remainingDistance);
             //Now, deal with the player being heard, rather than seen.  I guess players can run and shout.  Check the states.
             //So here's what we'll do.  If the player is running, they can be heard from as far away as their sight cone allows.

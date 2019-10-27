@@ -5,12 +5,14 @@ using UnityEngine;
 public class ToolTipShower : MonoBehaviour
 {
     public Canvas tooltip;
+    public bool stationary = false;
     bool playerIsInside = false;
 
-    void Update()
+    void Start()
     {
         if (!playerIsInside)
         {
+            //Debug.Log("turn off the tooltip");
             tooltip.gameObject.SetActive(false);
         }
         
@@ -18,12 +20,20 @@ public class ToolTipShower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        tooltip.gameObject.SetActive(true);
-        playerIsInside = true;
+        if(other.gameObject.tag == "Player" && !stationary)
+        {
+            tooltip.gameObject.SetActive(true);
+            playerIsInside = true;
+        }
+        
     }
     private void OnTriggerExit(Collider other)
     {
-        tooltip.gameObject.SetActive(false);
-        playerIsInside = false;
+        if(other.gameObject.tag == "Player" && !stationary)
+        {
+            tooltip.gameObject.SetActive(false);
+            playerIsInside = false;
+        }
+        
     }
 }
