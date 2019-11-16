@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class MainMenuNavigation : MonoBehaviour
 {
-    public Animator anim;
+    private Animator CamAnim;
+    public Animator CanvAnim;
+    private Animation[] clips;
     // Start is called before the first frame update
     void Start()
     {
-        anim = this.gameObject.GetComponent<Animator>();
+        CamAnim = this.gameObject.GetComponent<Animator>();
+        
     }
 
     public void pressPlay()
     {
-        anim.SetBool("Play", true);
+        //Debug.Log("play");
+        CamAnim.SetBool("Play", true);
+        CanvAnim.SetBool("playPressed", true);
     }
 
+    public void DollyEnded()
+    {
+        //Debug.Log("dollycomplete");
+        CanvAnim.SetBool("dollyComplete", true);
+    }
     // Update is called once per frame
     void Update()
     {
