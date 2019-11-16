@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 167292467}
   - component: {fileID: 167292470}
   - component: {fileID: 167292471}
+  - component: {fileID: 167292472}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -299,6 +300,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvAnim: {fileID: 1054038042}
+--- !u!45 &167292472
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167292466}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 5af44caac71357247ab86f175cd0b42f, type: 2}
 --- !u!1 &403057000
 GameObject:
   m_ObjectHideFlags: 0
