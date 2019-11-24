@@ -429,7 +429,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldOfViewAngle: 110
   playerInSight: 0
+  playerIsHeard: 0
   personalLastSighting: {x: 0, y: 0, z: 0}
+  personalLastSightingTransform: {fileID: 0}
 --- !u!114 &825925308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +452,10 @@ MonoBehaviour:
   childrenRend: []
   targets: []
   detectionRange: 5
+  patrolWaitTime: 2
+  searchWaitTime: 10
+  gs: {fileID: 0}
+  spawnObject: {fileID: 0}
 --- !u!1001 &861596791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -979,6 +985,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 806041506789955381, guid: f2ea9658e42074742a546f86a5450b1c,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2ea9658e42074742a546f86a5450b1c, type: 3}
