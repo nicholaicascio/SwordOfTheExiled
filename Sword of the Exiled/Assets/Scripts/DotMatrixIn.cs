@@ -7,6 +7,7 @@ public class DotMatrixIn : MonoBehaviour
 {
     public Image[] dots;
     public float FadeinTime = 2.0f;
+    public Animator CreditAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,8 @@ public class DotMatrixIn : MonoBehaviour
             StartCoroutine("dotIn", dot);
         }
 
+        Invoke("callDotOut", 8.0f);
+        Invoke("RollCredits", 13.0f);
     }
 
     IEnumerator dotIn(Image dot)
@@ -30,6 +33,22 @@ public class DotMatrixIn : MonoBehaviour
         dot.gameObject.SetActive(true);
     }
 
+
+
+    private void callDotOut()
+    {
+        foreach(Image dot in dots)
+        {
+            StartCoroutine("dotOut", dot);
+        }
+        
+    }
+
+    public void RollCredits()
+    {
+        CreditAnim.SetBool("rollCredits", true);
+    }
+
     IEnumerator dotOut(Image dot)
     {
         float num = Random.Range(0.5f, FadeinTime);
@@ -37,7 +56,6 @@ public class DotMatrixIn : MonoBehaviour
         yield return new WaitForSeconds(num);
         dot.gameObject.SetActive(false);
     }
-
     // Update is called once per frame
     void Update()
     {
