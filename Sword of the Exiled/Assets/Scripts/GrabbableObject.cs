@@ -14,44 +14,66 @@ public class GrabbableObject : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").gameObject.transform;
+        //Assign player to transform of the player.
+        setPlayer();
+    }
+
+    /// <summary>
+    /// Assign the player to the transform of the player.
+    /// TODO:
+    /// Replace this with the Photon ownership code.
+    /// </summary>
+    private void setPlayer()
+    {
+        if(GameObject.FindGameObjectsWithTag("Player").Length > 0)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").gameObject.transform;
+        }
     }
 
     void Update()
     {
-        if (!stationary)
+        //Check to see if the player is set.
+        if (player == null)
         {
-            float dist = Vector3.Distance(gameObject.transform.position, player.position);
-            if (dist <= 2.5f)
+            setPlayer();
+        }
+        else
+        {
+            if (!stationary)
             {
-                hasPlayer = true;
-            }
-            else
-            {
-                hasPlayer = false;
-            }
-            if (hasPlayer && Input.GetKeyDown(KeyCode.E))
-            {
-                GetComponent<Rigidbody>().isKinematic = true;
-                transform.parent = player;
-                beingCarried = true;
-            }
-            if (beingCarried)
-            {
-                if (touched)
+                float dist = Vector3.Distance(gameObject.transform.position, player.position);
+                if (dist <= 2.5f)
                 {
-                    GetComponent<Rigidbody>().isKinematic = false;
-                    transform.parent = null;
-                    beingCarried = false;
-                    touched = false;
+                    hasPlayer = true;
                 }
-                if (Input.GetMouseButtonDown(0))
+                else
                 {
-                    GetComponent<Rigidbody>().isKinematic = false;
-                    transform.parent = null;
-                    beingCarried = false;
-                    //GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
-                    RandomAudio();
+                    hasPlayer = false;
+                }
+                if (hasPlayer && Input.GetKeyDown(KeyCode.E))
+                {
+                    GetComponent<Rigidbody>().isKinematic = true;
+                    transform.parent = player;
+                    beingCarried = true;
+                }
+                if (beingCarried)
+                {
+                    if (touched)
+                    {
+                        GetComponent<Rigidbody>().isKinematic = false;
+                        transform.parent = null;
+                        beingCarried = false;
+                        touched = false;
+                    }
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        GetComponent<Rigidbody>().isKinematic = false;
+                        transform.parent = null;
+                        beingCarried = false;
+                        //GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
+                        RandomAudio();
+                    }
                 }
             }
         }
@@ -60,5 +82,14 @@ public class GrabbableObject : MonoBehaviour
     void RandomAudio()
     {
 
+    }
+
+    /// <summary>
+    /// This is a quick and dirty coroutine to make some stuff wait.  Every now and then, you just need to wait a moment.
+    /// </summary>
+    /// <param name="x">Int - Number of milliseconds to wait.</param>
+    private IEnumerator SimpleWait(float x)
+    {
+        yield return new WaitForSeconds(x);
     }
 }
