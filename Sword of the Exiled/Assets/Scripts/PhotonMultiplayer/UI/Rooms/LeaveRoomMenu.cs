@@ -7,6 +7,8 @@ public class LeaveRoomMenu : MonoBehaviour
 {
     //A link to our cavas thing that we're basically considering a mini manager.
     private RoomsCanvases _roomsCanvases;
+    //public Canvas CreateRoomCanvas;
+
 
     /// <summary>
     /// This should be called on initialization.  It's expecting to get the mini manager.
@@ -27,5 +29,7 @@ public class LeaveRoomMenu : MonoBehaviour
 
         //Hide the current room canvas so that we are basically back on the create or join room canvas.
         _roomsCanvases.CurrentRoomCanvas.Hide();
+        _roomsCanvases.CreateOrJoinRoomCanvas.gameObject.SetActive(true);
+        //CreateRoomCanvas.gameObject.SetActive(false);
     }
 }

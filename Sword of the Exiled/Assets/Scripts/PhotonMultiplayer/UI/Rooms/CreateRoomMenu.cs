@@ -11,6 +11,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private Text _roomName;
+    public Canvas CreateRoomCanvas;
 
     //This is the main canvas that will act as a semi manager.
     private RoomsCanvases _roomsCanvases;
@@ -22,6 +23,11 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     public void FirstInitialize(RoomsCanvases canvases)
     {
         _roomsCanvases = canvases;
+    }
+
+    public void DisableSelf()
+    {
+        
     }
 
     public void onClick_CreateRoom()
@@ -45,6 +51,8 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
         //Join or create room.
         PhotonNetwork.JoinOrCreateRoom(_roomName.text, options, TypedLobby.Default);
 
+        //CreateRoomCanvas.gameObject.SetActive(false);
+        
     }
 
     /// <summary>
@@ -56,7 +64,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 
         //Now, show the current room canvas.
         _roomsCanvases.CurrentRoomCanvas.Show();
-
+        CreateRoomCanvas.gameObject.SetActive(false);
     }
 
     /// <summary>
