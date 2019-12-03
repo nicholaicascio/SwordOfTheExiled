@@ -1,8 +1,15 @@
-﻿using Photon.Pun;
-using Photon.Realtime;
+﻿//using Photon.Pun;
+//using Photon.Realtime;
 using UnityEngine;
 
-public class Reciever : MonoBehaviourPunCallbacks
+/// <summary>
+/// This was using network stuff, but now it's not.  I set it up so that the
+/// recievers can be individual to a person playing, but the moving prisms are
+/// what you would actually have networked.  This also drastically reduces the
+/// amount of network calls being made.  Yay!
+/// </summary>
+//public class Reciever : MonoBehaviourPunCallbacks
+public class Reciever : MonoBehaviour
 {
     //So, this reciever id is how we are going to separate all the recievers from each other.  Each room has a number, and there are recievers in each room.  So the first reciever in rooom
     //1 should be Reciever_101.  The 10th reciever in room 8 should be Reciever_810.  This should be that number for tracking purposes.  
@@ -18,6 +25,7 @@ public class Reciever : MonoBehaviourPunCallbacks
 
     public bool secondRecieverActivated = false;
     public bool secondRecieverRequired = false;
+    public bool isActivated = false;
     public bool MultipleDoors = false;
     public bool ClosesDoor = false;
     bool doorIsClosed = false;
@@ -28,35 +36,18 @@ public class Reciever : MonoBehaviourPunCallbacks
     public GameObject[] targetObjects;
     public GameObject[] guardTrapperAndDoor;
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (myColor == null)
-        //{
-        //    //So, this is going to toggle the door for all players involved.
-        //    base.photonView.RPC("RPC_DoorToggle", RpcTarget.All, RecieverId);
-        //}
-        ////if(RecieverId == 101)
-        ////{
-        ////    Debug.Log("myColor for Reciever101 is: " + myColor + ";  MulitpleDoors for Reciever101 is: " + MultipleDoors);
-        ////}
-        //if (myColor == recievedColor && !MultipleDoors)
-        //{
-        //    //So, this is going to just open doors I think.
-        //    base.photonView.RPC("RPC_DoorOpen", RpcTarget.All, RecieverId);
-        //}
-    }
-
     /// <summary>
     /// This is a networked function that will run through the doors and toggle them.
+    /// This used to be a network RPC.  But I don't need to do that anymore because
+    /// I made the moving prisms proper networked items.
     /// </summary>
     /// <param name="Id">Int - Number of the reciever that should be paying attention to this.</param>
-    [PunRPC]
+    //[PunRPC]
     public void RPC_DoorToggle(int Id)
     {
         if (_RecieverId == Id)
         {
-            Debug.Log("RPC_DoorToggle function run.");
+            //Debug.Log("RPC_DoorToggle function run.");
             foreach (GameObject door in targetObjects)
             {
                 Animator anim = door.GetComponent<Animator>();
@@ -76,62 +67,85 @@ public class Reciever : MonoBehaviourPunCallbacks
     }
 
     /// <summary>
-    /// So, this also opens and closes doors.  However, it 
+    /// So, this also opens and closes doors.
+    /// As I've mentioned in a couple other things, this used to be RPC based, but
+    /// now it's not because the doors open as a result of the properly created 
+    /// multiplayer prisms.
     /// </summary>
     /// <param name="Id">Int - Number of the reciever that should be paying attention to this.</param>
-    [PunRPC]
+    //[PunRPC]
     public void RPC_DoorOpen(int Id)
     {
         if (_RecieverId == Id)
         {
-            Debug.Log("RPC_DoorOpen function run.");
-            //First, we'll check to see if a second reciever is required.  If so, we need to set that this has been
-            //opened so that when that is checked everything will be ready to go.
+        //    Debug.Log("RPC_DoorOpen function run.");
+
+        //    Debug.Log("Checking second required: " + secondRecieverRequired);
+
+            //Check to see if this has a second reciever required.
             if (secondRecieverRequired)
             {
-                secondRecieverActivated = true;
+                //First, we'll look to see if there are any reciever objects.  If so, we want to check
+                //to see if they have been properly activated.
+                foreach (GameObject targetObject in targetObjects)
+                {
+                    //We'll check to see if this object is a receiver.
+                    if(targetObject.tag == "Reciever")
+                    {
+                        //This is a reciever.  So, get it.  
+                        Reciever rec = targetObject.gameObject.GetComponent<Reciever>();
+
+                        //Set the secodn reciever activated to whatever the reciever isActivated is.
+                        secondRecieverActivated = rec.isActivated;
+                    }
+                }
             }
-            boolCheck();
+
+            //Next, we will loop through doors and see if we can open them.  Yay!
             foreach (GameObject targetObject in targetObjects)
             {
+                //First, well check for doors in which no second reciever is needed.
                 if (targetObject.gameObject.name == "BigDoorController" && !secondRecieverRequired)
                 {
+                    //Open the door.
                     //Debug.Log("open big door");
                     Animator anim = targetObject.GetComponent<Animator>();
                     anim.SetBool("isOpen", true);
                 }
-                else if (targetObject.gameObject.name == "Reciever")
-                {
-                    Reciever rec = targetObject.gameObject.GetComponent<Reciever>();
-                    rec.secondRecieverActivated = true;
-                }
+                //Next, we'll check to see that the second reciever is required AND active!
                 else if (targetObject.gameObject.name == "BigDoorController" && secondRecieverRequired && secondRecieverActivated)
                 {
                     Animator anim = targetObject.GetComponent<Animator>();
                     anim.SetBool("isOpen", true);
                 }
             }
-
         }
     }
 
     /// <summary>
-    /// 
+    /// This code runs when a room has multiple doors.
     /// </summary>
     public void ActivateTwo()
     {
-        if (_myColor == recievedColor)
+        //Debug.Log("Activate two called.");
+        //Debug.Log("_myColor: " + _myColor + "; recievedColor: " + recievedColor);
+        //Makre sure the color recieved is the color we are looking for.
+        if (_myColor == recievedColor || recievedColor is null)
         {
-            base.photonView.RPC("RPC_DoorToggle", RpcTarget.All, _RecieverId);
+            //Now, check to see if we can open the door.
+            //base.photonView.RPC("RPC_DoorToggle", RpcTarget.All, _RecieverId);
+            RPC_DoorToggle(_RecieverId);
         }
     }
 
     /// <summary>
     /// At this point in the game, there is only one door that closes.  It is in the fifth room.  So this
     /// really shouldn't be done like this, but whatever.  I really just need this to work.
+    /// This used to be a pun RPC thing.  But that won't be necessary at this point in time
+    /// as I set the moveable objects to network objects.  Yay!
     /// </summary>
     /// <param name="Id">Int - Number of the reciever that should be paying attention to this.</param>
-    [PunRPC]
+    //[PunRPC]
     public void RPC_CloseDoor(int Id)
     {
         //Debug.Log("Running CloseDoor");
@@ -190,6 +204,7 @@ public class Reciever : MonoBehaviourPunCallbacks
         //there has been no change and no action needs to be taken.
         if (_previousColor != col)
         {
+            //Debug.Log("previous color: " + _previousColor + "; new color: " + col);
             //Set the previous color to the color passed in.
             _previousColor = col;
             recievedColor = col;
@@ -201,7 +216,8 @@ public class Reciever : MonoBehaviourPunCallbacks
             //the myColor.  The CloseDoor stuff is a bit messy, but it works for now.
             if (ClosesDoor)
             {
-                base.photonView.RPC("RPC_CloseDoor", RpcTarget.All, _RecieverId);
+                //base.photonView.RPC("RPC_CloseDoor", RpcTarget.All, _RecieverId);
+                RPC_CloseDoor(_RecieverId);
             }
             //Here, we are going to check for multiple doors.  Super gross.
             else if (MultipleDoors)
@@ -210,15 +226,14 @@ public class Reciever : MonoBehaviourPunCallbacks
             }
             else if(_myColor == recievedColor)
             {
-                base.photonView.RPC("RPC_DoorOpen", RpcTarget.All, _RecieverId);
+                //Set that this is activated to true.  Needed for switches requireing more
+                //than one switch to be activated.
+                isActivated = true;
+
+                //base.photonView.RPC("RPC_DoorOpen", RpcTarget.All, _RecieverId);
+                RPC_DoorOpen(_RecieverId);
             }
             //Debug.Log("setColor");
         }
     }
-
-    public void boolCheck()
-    {
-        Debug.Log("For Reciever_" + _RecieverId + "secondRecieverActivated is: " + secondRecieverActivated + " and secondRecieverRequired is: " + secondRecieverRequired);
-    }
-
 }

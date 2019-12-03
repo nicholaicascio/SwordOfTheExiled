@@ -20,23 +20,55 @@ public class CharacterInitialization : MonoBehaviour
     [SerializeField]
     private GameObject _joinSpawn;
 
+    //This will be our prefab for the guard.
+    [SerializeField]
+    private GameObject _guardPrefab;
+
+    //Here, we will have a spawn point for the guard.
+    [SerializeField]
+    private GameObject _guardSpawn;
+
+    //Guard trapper.  Now, I realize that this should not all be done here.  But we are coming
+    //close to the end of our available time, so here is where it goes.
+    [SerializeField]
+    private GuardTrapper _guardTrapper;
+
     // Start is called before the first frame update
     void Start()
     {
         //We will set the master player to different places than the joiner.
         if (PhotonNetwork.IsMasterClient)
         {
-            MasterManager.NetworkInstantiate(_playerPrefab, _hostSpawn.transform.position, Quaternion.identity);
+            MasterClientStart();
         }
         else
         {
-            MasterManager.NetworkInstantiate(_playerPrefab, _joinSpawn.transform.position, Quaternion.identity);
+            SlaveClientStart();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// This will handled all the things that the master is going to have to do.
+    /// Instantiate self, guards. etc.
+    /// </summary>
+    private void MasterClientStart()
     {
-        
+        //First, instanitate the player.
+        MasterManager.NetworkInstantiate(_playerPrefab, _hostSpawn.transform.position, Quaternion.identity);
+
+        //Next, instantiate the guard.  We will immediately give that guard to the guard trapper manager.
+        //Now that we have a guard, go ahead and give the guard trapper the guard to manage.
+        _guardTrapper.guards[0] = MasterManager.NetworkInstantiate(_guardPrefab, _guardSpawn.transform.position, Quaternion.identity);
+
+    }
+
+    /// <summary>
+    /// This is going to handle all the things that the slave is going to have to do.
+    /// Instantiate self.  
+    /// That's pretty much it.
+    /// </summary>
+    private void SlaveClientStart()
+    {
+        MasterManager.NetworkInstantiate(_playerPrefab, _joinSpawn.transform.position, Quaternion.identity);
     }
 }
