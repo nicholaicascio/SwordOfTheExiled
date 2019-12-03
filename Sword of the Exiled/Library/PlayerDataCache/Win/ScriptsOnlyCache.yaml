@@ -24,6 +24,7 @@ ScriptsOnlyBuild:
     - PlayerStateController
     - PressEToVignette
     - Prism
+    - PrismSpawner
     - RandomCustomPropertyGenerator
     - Reciever
     - RoomListing
@@ -83,11 +84,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -172,6 +170,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10344}
     - Class: 114
+      Script: {instanceID: 10506}
+    - Class: 114
       Script: {instanceID: 10510}
     - Class: 114
       Script: {instanceID: 10528}
@@ -191,6 +191,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11144}
     - Class: 114
       Script: {instanceID: 11164}
+    - Class: 114
+      Script: {instanceID: 11234}
     - Class: 114
       Script: {instanceID: 11302}
     - Class: 114
@@ -240,36 +242,42 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12254}
     - Class: 114
-      Script: {instanceID: 12480}
+      Script: {instanceID: 12418}
     - Class: 114
-      Script: {instanceID: 12504}
+      Script: {instanceID: 12466}
     - Class: 114
-      Script: {instanceID: 12518}
+      Script: {instanceID: 12482}
+    - Class: 114
+      Script: {instanceID: 12506}
     - Class: 114
       Script: {instanceID: 12520}
     - Class: 114
-      Script: {instanceID: 12718}
+      Script: {instanceID: 12522}
     - Class: 114
-      Script: {instanceID: 12790}
+      Script: {instanceID: 12720}
     - Class: 114
-      Script: {instanceID: 12942}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 13270}
+      Script: {instanceID: 12944}
     - Class: 114
-      Script: {instanceID: 13286}
+      Script: {instanceID: 13272}
     - Class: 114
-      Script: {instanceID: 13400}
+      Script: {instanceID: 13288}
     - Class: 114
-      Script: {instanceID: 13432}
+      Script: {instanceID: 13402}
     - Class: 114
-      Script: {instanceID: 13460}
+      Script: {instanceID: 13434}
     - Class: 114
-      Script: {instanceID: 13472}
+      Script: {instanceID: 13462}
+    - Class: 114
+      Script: {instanceID: 13474}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 134
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -280,6 +288,8 @@ ScriptsOnlyBuild:
     - Class: 143
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 195
       Script: {instanceID: 0}
     - Class: 198
       Script: {instanceID: 0}
@@ -391,29 +401,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12370}
     - Class: 114
-      Script: {instanceID: 12416}
+      Script: {instanceID: 12418}
     - Class: 114
-      Script: {instanceID: 12464}
+      Script: {instanceID: 12466}
     - Class: 114
-      Script: {instanceID: 12518}
+      Script: {instanceID: 12520}
     - Class: 114
-      Script: {instanceID: 12566}
+      Script: {instanceID: 12568}
     - Class: 114
-      Script: {instanceID: 12676}
+      Script: {instanceID: 12678}
     - Class: 114
-      Script: {instanceID: 12718}
+      Script: {instanceID: 12720}
     - Class: 114
-      Script: {instanceID: 12790}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 13176}
+      Script: {instanceID: 13178}
     - Class: 114
-      Script: {instanceID: 13194}
+      Script: {instanceID: 13196}
     - Class: 114
-      Script: {instanceID: 13248}
+      Script: {instanceID: 13250}
     - Class: 114
-      Script: {instanceID: 13270}
+      Script: {instanceID: 13272}
     - Class: 114
-      Script: {instanceID: 13400}
+      Script: {instanceID: 13402}
+    - Class: 114
+      Script: {instanceID: 125258}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -1443,7 +1455,7 @@ ScriptsOnlyBuild:
     className: ChannelSelector
   - hash:
       serializedVersion: 2
-      Hash: 28a490b506afbb394f213656ffcb11ce
+      Hash: b3abfa524f9b649ebe24d588bac5e3a0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterInitialization
@@ -1551,7 +1563,7 @@ ScriptsOnlyBuild:
     className: TerrainGizmos
   - hash:
       serializedVersion: 2
-      Hash: c5dfbf3100d0c37a8a543b21f75233b0
+      Hash: d7eab60585adfeb763c9ad3e92fa5cbe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CreateOrJoinRoomCanvas
@@ -1683,7 +1695,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 8d22dfb8b6b6ed3a08d9dd3b083aaf29
+      Hash: a5b5f5b1c731fd332f60d1b482c9d870
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Reciever
@@ -2019,6 +2031,12 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 0562c9842c105707b2cb5e5ed097eccb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenuNavigation
+  - hash:
+      serializedVersion: 2
       Hash: e1e615eaf73e560828f53edc8952e615
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
@@ -2121,7 +2139,7 @@ ScriptsOnlyBuild:
     className: PlayerManager
   - hash:
       serializedVersion: 2
-      Hash: c764c4c747553e2fb02d796656435ae3
+      Hash: f264339ba0334fbcebcf30e0ad83c1a4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GrabbableObject
@@ -2683,6 +2701,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: AutoMobileShaderSwitch
+  - hash:
+      serializedVersion: 2
+      Hash: 85cbf5bb25de140ffda80d1426ff2203
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PrismSpawner
   platform: 5
   scenePathNames:
   - Assets/Scenes/Lobby.unity

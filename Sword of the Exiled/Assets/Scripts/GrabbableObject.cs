@@ -1,95 +1,186 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
-public class GrabbableObject : MonoBehaviour
+/// <summary>
+/// This class will allow an object to be grabbable over the network.
+/// </summary>
+public class GrabbableObject : MonoBehaviourPun, IPunOwnershipCallbacks
 {
+    //Determines if a prism should be moveable or not.  Set to true on in game environmental prisms.
     public bool stationary = false;
     public Transform player;
-    bool hasPlayer = false;
-    bool beingCarried = false;
-    public AudioClip[] soundToPlay;
-    //private AudioSource audioSource;
-    private bool touched = false;
 
-    private void Start()
+    //So, this has player deal has something to do with moving and being carried.  We're going
+    //to set this to work with a trigger.  When this has a player, it can be moved.
+    private bool hasPlayer = false;
+
+    //This will track if the prism is being carried.  It can only move while being carried.
+    private bool beingCarried = false;
+    
+    public AudioClip[] soundToPlay;
+
+    /// <summary>
+    /// Setup the call back so that this is called properly.  Registers the IPunOwnership callback internally.
+    /// If you didn't want to execute when the objec is disabled just like with events, this would be OnEnable, and
+    /// OnDisable.
+    /// </summary>
+    private void Awake()
     {
-        //Assign player to transform of the player.
-        setPlayer();
+        PhotonNetwork.AddCallbackTarget(this);
     }
 
     /// <summary>
-    /// Assign the player to the transform of the player.
-    /// TODO:
-    /// Replace this with the Photon ownership code.
+    /// Setup the call back so that this is called properly.  Registers the IPunOwnership callback internally.
+    /// If you didn't want to execute when the objec is disabled just like with events, this would be OnEnable, and
+    /// OnDisable.
     /// </summary>
-    private void setPlayer()
+    private void OnDestroy()
     {
-        if(GameObject.FindGameObjectsWithTag("Player").Length > 0)
-        {
-            player = GameObject.FindGameObjectWithTag("Player").gameObject.transform;
-        }
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 
+    /// <summary>
+    /// So, I realized that I am constantly setting the isKinematic to true.
+    /// I should probably just set that in the prefabs.
+    /// TODO: set prefab for prisms to isKinematic = true;
+    /// </summary>
     void Update()
     {
-        //Check to see if the player is set.
-        if (player == null)
+        //Make sure we can move this prism.
+        if (!stationary && hasPlayer)
         {
-            setPlayer();
-        }
-        else
-        {
-            if (!stationary)
+            //First, we'll check to see if the "E" key is pressed.
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                float dist = Vector3.Distance(gameObject.transform.position, player.position);
-                if (dist <= 2.5f)
-                {
-                    hasPlayer = true;
-                }
-                else
-                {
-                    hasPlayer = false;
-                }
-                if (hasPlayer && Input.GetKeyDown(KeyCode.E))
-                {
-                    GetComponent<Rigidbody>().isKinematic = true;
-                    transform.parent = player;
-                    beingCarried = true;
-                }
+                //Debug.Log("E Key pressed.");
+
+                //First, check to see if the object is being carried.
                 if (beingCarried)
                 {
-                    if (touched)
+                    //Debug.Log("Turn off being carried.");
+                    //We want to set the prism down, so do that now.
+                    GetComponent<Rigidbody>().isKinematic = true;
+
+                    //prevent it from following the player
+                    transform.parent = null;
+
+                    //Lastly, turn being carried off.
+                    beingCarried = false;
+                }
+                //Object is not being carried.  So, we will request ownership of it and make it moveable.
+                else
+                {
+                    //Debug.Log("Turn on being carried.");
+                    //Get ownership if this isn't already mine.
+                    if (!photonView.IsMine)
                     {
-                        GetComponent<Rigidbody>().isKinematic = false;
-                        transform.parent = null;
-                        beingCarried = false;
-                        touched = false;
+                        //Debug.Log("Making this mine.");
+                        //This will allow whomever pressed "E" to own this prism.
+                        //Quick note, for this to work, the prism has to be set to "Takeover" in the PhotonView for Owner.
+                        base.photonView.RequestOwnership();
                     }
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        GetComponent<Rigidbody>().isKinematic = false;
-                        transform.parent = null;
-                        beingCarried = false;
-                        //GetComponent<Rigidbody>().AddForce(playerCam.forward * throwForce);
-                        RandomAudio();
-                    }
+
+                    //Now that we have ownership as well, we will set the prism to be moveable.
+                    GetComponent<Rigidbody>().isKinematic = true;
+
+                    //Set the parent transform of this so that it will follow owner around.
+                    transform.parent = player;
+
+                    //Lastly, we will show that this is being carried.
+                    beingCarried = true;
                 }
             }
         }
+        //We're just going to check now that it has no owner.  If so, it musn't be moveable.
+        else if(!stationary)
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
 
+    /// <summary>
+    /// No idea what this is for.  It does nothing and is called when a mouse down
+    /// is clicked.  I think it was supposed to be for putting the prism down.  I've
+    /// removed that old code though.
+    /// </summary>
     void RandomAudio()
     {
 
     }
 
     /// <summary>
-    /// This is a quick and dirty coroutine to make some stuff wait.  Every now and then, you just need to wait a moment.
+    /// This is going to check for colisions with players to see if a player can control the object.
     /// </summary>
-    /// <param name="x">Int - Number of milliseconds to wait.</param>
-    private IEnumerator SimpleWait(float x)
+    /// <param name="other"></param>
+    public void OnTriggerEnter(Collider other)
     {
-        yield return new WaitForSeconds(x);
+        //Since we are only making moves with this grabbable,
+        //we need to check if this is stationary before we do anyting.
+        if (!stationary)
+        {
+            //Check for other collision to be the player.
+            if (other.tag == "Player")
+            {
+                //We have hit a player.  Set the player variable to that transform.
+                player = other.GetComponent<Transform>();
+
+                //Now, set hasPlayer to true.
+                hasPlayer = true;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This will run when the player is no longer near the prism.
+    /// </summary>
+    /// <param name="other"></param>
+    public void OnTriggerExit(Collider other)
+    {
+        //Since we are only making moves with this grabbable,
+        //we need to check if this is stationary before we do anyting.
+        if (!stationary)
+        {
+            //Make sure the other collider is the player.
+            if (other.tag == "Player")
+            {
+                //Set the hasPlayer boolean to false.
+                hasPlayer = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Get ownership of an object that is marked as request in the PhotonView.
+    /// This can be called on anything that uses the IPunOwnershipCallbacks
+    /// It's important to make sure the target view matches the view on this object before
+    /// you do anything with it.
+    /// </summary>
+    /// <param name="targetView"></param>
+    /// <param name="requestingPlayer"></param>
+    public void OnOwnershipRequest(PhotonView targetView, Player requestingPlayer)
+    {
+        //Make sure the target view is the same.  Honestly, I don't know what that means.  PhotonView is a class that you put on photon networked
+        //objects.  Why would you not be looking the correct PhotonView?
+        if (targetView != base.photonView)
+        {
+            return;
+        }
+
+        //TODO:
+        //Add checks here should you want them.
+
+        //This actually does the ownership transfer.
+        base.photonView.TransferOwnership(requestingPlayer);
+    }
+
+    public void OnOwnershipTransfered(PhotonView targetView, Player previousOwner)
+    {
+        //Make sure the target view is the same.  Honestly, I don't know what that means.  PhotonView is a class that you put on photon networked
+        //objects.  Why would you not be looking the correct PhotonView?
+        if (targetView != base.photonView)
+        {
+            return;
+        }
     }
 }

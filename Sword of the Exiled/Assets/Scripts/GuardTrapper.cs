@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is going to handle the guard and set his scripts.
+/// </summary>
 public class GuardTrapper : MonoBehaviour
 {
     public GameObject currentZone;

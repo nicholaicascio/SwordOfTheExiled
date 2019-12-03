@@ -9,6 +9,9 @@ public class MainMenuNavigation : MonoBehaviour
     //private Animation[] clips;
     public Canvas AreYouSure;
     public GameObject LobbyCam;
+    public GameObject LobbyCanvas;
+    public GameObject LobbyButton;
+    public GameObject QuitButton;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,9 @@ public class MainMenuNavigation : MonoBehaviour
         Camera thiscam = this.gameObject.GetComponent<Camera>();
         thiscam.enabled = false;
         LobbyCam.gameObject.SetActive(true);
+        LobbyCanvas.SetActive(true);
+        LobbyButton.SetActive(false);
+        QuitButton.SetActive(false);
     }
 
     public void DollyEnded()
