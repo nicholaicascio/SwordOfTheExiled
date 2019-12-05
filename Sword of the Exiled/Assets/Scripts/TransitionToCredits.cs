@@ -14,10 +14,10 @@ public class TransitionToCredits : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("Adding listener for transition to credits");
-        PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventReceived;
+        PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_CreditsEvent;
     }
 
-    private void NetworkingClient_EventReceived(EventData obj)
+    private void NetworkingClient_CreditsEvent(EventData obj)
     {
         //First, check for our event.
         if (obj.Code == TRANS_TO_CREDITS)
@@ -34,7 +34,7 @@ public class TransitionToCredits : MonoBehaviour
     private void RemoveEvent_TransToCredits()
     {
         Debug.Log("Removing listener for door opening.");
-        PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_EventReceived;
+        PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_CreditsEvent;
     }
 
     private void OnTriggerEnter(Collider other)
