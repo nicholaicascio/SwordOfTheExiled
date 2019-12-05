@@ -39,7 +39,11 @@ public class TransitionToCredits : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Player")
+        {
+            PhotonNetwork.RaiseEvent(TRANS_TO_CREDITS, null, RaiseEventOptions.Default, SendOptions.SendUnreliable);
+        }
         //Now, we're sending an event.
-        PhotonNetwork.RaiseEvent(TRANS_TO_CREDITS, null, RaiseEventOptions.Default, SendOptions.SendUnreliable);
+        
     }
 }
