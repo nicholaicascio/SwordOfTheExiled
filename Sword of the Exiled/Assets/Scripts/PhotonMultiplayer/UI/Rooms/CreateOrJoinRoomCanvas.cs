@@ -30,6 +30,7 @@ public class CreateOrJoinRoomCanvas : MonoBehaviourPunCallbacks
     /// <param name="canvases"></param>
     public void FirstInitialize (RoomsCanvases canvases)
     {
+        //Debug.Log("FirstInitialize for the CreateOrJoinRoomCanvas");
         _roomsCanvases = canvases;
         _createRoomMenu.FirstInitialize(canvases);
         _roomListingsMenu.FirstInitialize(canvases);

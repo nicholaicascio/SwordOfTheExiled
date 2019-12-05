@@ -1317,6 +1317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomName: {fileID: 1037895833}
+  CreateRoomCanvas: {fileID: 0}
 --- !u!1 &643802450
 GameObject:
   m_ObjectHideFlags: 0

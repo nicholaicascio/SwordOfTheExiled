@@ -22,6 +22,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     /// <param name="canvases"></param>
     public void FirstInitialize(RoomsCanvases canvases)
     {
+        //Debug.Log("FirstInitialize for the CreateRoomMenu");
         _roomsCanvases = canvases;
     }
 

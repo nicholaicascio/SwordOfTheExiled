@@ -216,7 +216,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.IsVisible = false;
             
             //Load the scene.
-            PhotonNetwork.LoadLevel(1);
+            PhotonNetwork.LoadLevel("mapScene");
         }
     }
 
