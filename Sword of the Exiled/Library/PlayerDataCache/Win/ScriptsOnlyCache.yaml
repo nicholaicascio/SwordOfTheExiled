@@ -1,7 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-Editor.dll:
-    - ReadmeEditor
     Assembly-CSharp-firstpass.dll:
     - UnityStandardAssets.Characters.FirstPerson.FirstPersonController
     - UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter
@@ -30,8 +28,9 @@ ScriptsOnlyBuild:
     - PressEToVignette
     - Prism
     - PrismSpawner
+    - PullUpMenu
+    - QuitGameCanvas
     - RandomCustomPropertyGenerator
-    - Readme
     - Reciever
     - RoomListing
     - RoomListingsMenu
@@ -96,6 +95,12 @@ ScriptsOnlyBuild:
     - UnityEditor.Experimental.TerrainAPI.VoronoiNoise
     Unity.TerrainTools.dll:
     - TerrainGroup
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -368,6 +373,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13468}
     - Class: 114
       Script: {instanceID: 13480}
+    - Class: 114
+      Script: {instanceID: 140976}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -447,6 +454,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -508,6 +519,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11794}
     - Class: 114
+      Script: {instanceID: 11816}
+    - Class: 114
       Script: {instanceID: 11856}
     - Class: 114
       Script: {instanceID: 12066}
@@ -539,6 +552,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13278}
     - Class: 114
       Script: {instanceID: 13408}
+    - Class: 114
+      Script: {instanceID: 140976}
+    - Class: 114
+      Script: {instanceID: 212334}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -2832,6 +2849,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: AutoMobileShaderSwitch
+  - hash:
+      serializedVersion: 2
+      Hash: 4e2d20e83d3f8c89f07faa0f03ff257d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PullUpMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: QuitGameCanvas
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenuScene.unity

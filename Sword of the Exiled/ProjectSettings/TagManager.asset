@@ -10,6 +10,8 @@ TagManager:
   - RecieverTwoDoors
   - NavPoint
   - Guard
+  - Bullet
+  - QuitGameCanvas
   layers:
   - Default
   - TransparentFX
