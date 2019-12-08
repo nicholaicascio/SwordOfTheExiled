@@ -59,6 +59,11 @@ public class InvestigateSoundState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //Set the animation.
+        animator.SetBool("isWalking", true);
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isIdol", false);
+
         //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
         stateController.ai.SetTarget(null);
 

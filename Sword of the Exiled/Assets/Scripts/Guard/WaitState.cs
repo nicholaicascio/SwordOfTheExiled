@@ -10,13 +10,19 @@ public class WaitState : State
     /// This is the constructor.  Just use it.
     /// </summary>
     /// <param name="stateController">State controller script that called this state.  It should pass itself so this has a reference.</param>
-    public WaitState(StateController stateController) : base(stateController) { }
+    /// <param name="anim">animator of the object this is for.</param>
+    public WaitState(StateController stateController) : base(stateController) {}
 
     /// <summary>
     /// What to do when entering the wait state.
     /// </summary>
     public override void OnStateEnter()
     {
+        //Set the animation.
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isIdol", true);
+
         //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
         stateController.ai.SetTarget(null);
 
@@ -43,7 +49,6 @@ public class WaitState : State
     /// </summary>
     public override void Act()
     {
-
     }
 
     /// <summary>
@@ -60,6 +65,7 @@ public class WaitState : State
         //Check timer so that the guard will stay for some amount of time before leaving for the next destination.
         else if (Time.time - timecheck > stateController.patrolWaitTime)
         {
+            //Debug.Log("Moving to next patrol point.");
             //We've waited as long as we need to, so go to the next patrol point.
             stateController.SetState(new PatrolState(stateController));
         }

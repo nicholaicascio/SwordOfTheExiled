@@ -23,13 +23,18 @@ public class StateController : MonoBehaviour
 
     public GameObject spawnObject;
 
+    //I'm cheesing it.  The states will need the animator, so I'm just going to allow them to pull it from the state controller.  It just
+    //makes it easier to access.
+    [SerializeField]
+    public Animator animator;
+
     /// <summary>
     /// Get the transform of the next navpoint to head to.
     /// </summary>
     /// <returns></returns>
     public Vector3 GetNextNavPoint()
     {
-        //Debug.Log("Current nav point [" + navPointNum + " ] reached.");
+        //Debug.Log("Current nav point [" + navPointNum + " ] reached.  Total navpoints are " + navPoints.Length);
         navPointNum = (navPointNum + 1) % navPoints.Length;
         //Debug.Log("Now moving to nav point [" + navPointNum + "]");
         return navPoints[navPointNum].transform.position;
@@ -40,6 +45,7 @@ public class StateController : MonoBehaviour
         navPoints = GameObject.FindGameObjectsWithTag("NavPoint");
 
     }
+
     /// <summary>
     /// Quick function that will change the color of everything to a passed in color.
     /// </summary>
@@ -84,6 +90,9 @@ public class StateController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set initial navpoint value.
+        navPointNum = 0;
+
         //Get reference to some local stuff.
         gs = GetComponent<GuardSight>();
 
@@ -115,8 +124,13 @@ public class StateController : MonoBehaviour
         currentState.Act();
     }
 
+    /// <summary>
+    /// This is going to set the state.
+    /// </summary>
+    /// <param name="state">State to be set.</param>
     public void SetState(State state)
     {
+        //Debug.Log("New state has been set of: " + state.GetType().Name);
         if(currentState != null)
         {
             currentState.OnStateExit();
@@ -130,6 +144,7 @@ public class StateController : MonoBehaviour
             currentState.OnStateEnter();
         }
     }
+
     /// <summary>
     /// This was just something I did for Dr. Dan for class.  We had to have a state that would create new ai dudes.
     ///// </summary>

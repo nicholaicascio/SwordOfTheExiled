@@ -35,6 +35,11 @@ public class ChaseState : State
     /// </summary>
     public override void OnStateEnter()
     {
+        //Set the animation.
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isRunning", true);
+        animator.SetBool("isIdol", false);
+
         //So, there are all these problems with the ai.setTarget, so we're going to kill that right now.
         stateController.ai.SetTarget(null);
 
