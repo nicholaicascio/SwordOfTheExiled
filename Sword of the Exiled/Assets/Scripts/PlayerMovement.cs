@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviourPun
     {
         if (base.photonView.IsMine)
         {
+            Debug.Log("Player seen!");
             //Input
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.z = Input.GetAxisRaw("Vertical");
@@ -36,14 +37,17 @@ public class PlayerMovement : MonoBehaviourPun
 
             if (sneaking == false && Input.GetButtonDown("Sneak") == true)
             {
+                //Debug.Log("Sneaking");
                 sneaking = true;
             }
             else if (sneaking == true && Input.GetButtonDown("Sneak") == true)
             {
+                //Debug.Log("Not Sneaking");
                 sneaking = false;
             }
             else if (sneaking == true && Input.GetButtonDown("Sprint") == true)
             {
+                //Debug.Log("Not Sneaking");
                 sneaking = false;
             }
         }
@@ -54,14 +58,17 @@ public class PlayerMovement : MonoBehaviourPun
         //Movement
         if (sprinting == true)
         {
+            //Debug.Log("Spring speed.");
             moveSpeed = sprintSpeed;
         }
         else if (sneaking == true)
         {
+            //Debug.Log("Sneak speed");
             moveSpeed = sneakSpeed;
         }
         else
         {
+            //Debug.Log("Walk speed?");
             moveSpeed = 5f;
         }
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);

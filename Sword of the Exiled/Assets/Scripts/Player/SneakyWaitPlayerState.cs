@@ -16,6 +16,12 @@ public class SneakyWaitPlayerState : PlayerState
     /// </summary>
     public override void OnStateEnter()
     {
+        //Set animation stuff.
+        animator.SetBool("sprinting", false);
+        animator.SetBool("sneaking", true);
+        animator.SetBool("idle", false);
+        animator.SetBool("walking", false);
+
         //Debug.Log("Player state is sneaking");
         pst = PlayerStateController.PlayerStateType.sneakWaiting;
     }

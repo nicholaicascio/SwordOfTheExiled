@@ -16,6 +16,12 @@ public class WaitPlayerState : PlayerState
     /// </summary>
     public override void OnStateEnter()
     {
+        //Set animation stuff.
+        animator.SetBool("sprinting", false);
+        animator.SetBool("sneaking", false);
+        animator.SetBool("idle", true);
+        animator.SetBool("walking", false);
+
         //Debug.Log("Player state is sneaking");
         pst = PlayerStateController.PlayerStateType.waiting;
     }

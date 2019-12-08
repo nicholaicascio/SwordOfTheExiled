@@ -1,7 +1,10 @@
-﻿public abstract class PlayerState
+﻿using UnityEngine;
+
+public abstract class PlayerState
 {
     protected PlayerStateController playerStateController;
     private PlayerStateController.PlayerStateType pst;
+    protected Animator animator;                    //Animator of the object.  It will be passed in from the state controller.  We just need to make sure it is set.
 
     /// <summary>
     /// Must be overridden.  Code what to look for during transition.
@@ -24,6 +27,7 @@
     public PlayerState(PlayerStateController playerStateController)
     {
         this.playerStateController = playerStateController;
+        this.animator = playerStateController.animator;
     }
 
     /// <summary>

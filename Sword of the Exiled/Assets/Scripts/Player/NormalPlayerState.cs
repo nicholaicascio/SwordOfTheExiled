@@ -16,6 +16,12 @@ public class NormalPlayerState : PlayerState
     /// </summary>
     public override void OnStateEnter()
     {
+        //Set animation stuff.
+        animator.SetBool("sprinting", false);
+        animator.SetBool("sneaking", false);
+        animator.SetBool("idle", false);
+        animator.SetBool("walking", true);
+
         //Debug.Log("Player state is normal");
         pst = PlayerStateController.PlayerStateType.normal;
     }

@@ -12,10 +12,14 @@ public class PlayerStateController : MonoBehaviour
         sneakWaiting = 4
     }
 
+
+    //I'm cheesing it.  The states will need the animator, so I'm just going to allow them to pull it from the state controller.  It just
+    //makes it easier to access.
+    [SerializeField]
+    public Animator animator;
+
     //Variables
     public PlayerState currentPlayerState;
-
-
 
     // Start is called before the first frame update
     void Start()

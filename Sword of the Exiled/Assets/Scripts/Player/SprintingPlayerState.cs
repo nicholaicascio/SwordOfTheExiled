@@ -16,6 +16,12 @@ public class SprintingPlayerState : PlayerState
     /// </summary>
     public override void OnStateEnter()
     {
+        //Set animation stuff.
+        animator.SetBool("sprinting", true);
+        animator.SetBool("sneaking", false);
+        animator.SetBool("idle", false);
+        animator.SetBool("walking", false);
+
         //Debug.Log("Player state is sprinting");
         pst = PlayerStateController.PlayerStateType.sprinting;
     }
