@@ -51,11 +51,11 @@ public class PlayerStateController : MonoBehaviourPun
     void Start()
     {
         //Check to see if the player is mine.  If not, find the camera and deactivate it.  Used for multiplayer.
-        if (!base.photonView.IsMine)
-        {
-            Camera cam = GetComponentInChildren<Camera>();
-            cam.enabled = false;
-        }
+        //if (!base.photonView.IsMine)
+        //{
+        //    Camera cam = GetComponentInChildren<Camera>();
+        //    cam.enabled = false;
+        //}
 
         //Set defaults for motion tracking variables.
         isSneaking = false;

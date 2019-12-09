@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: b531e050eaf52664c8bce2a9d4f8f79a
-  - enabled: 1
-    path: Assets/Scenes/TempScenes/DeleteMe.unity
-    guid: 0d5aab8eac8532d47bd715522c76316e
   m_configObjects: {}

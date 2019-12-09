@@ -53,6 +53,7 @@ public class CharacterInitialization : MonoBehaviour
     /// </summary>
     private void MasterClientStart()
     {
+        Debug.Log("Creating starting player.");
         //First, instanitate the player.
         MasterManager.NetworkInstantiate(_playerPrefab, _hostSpawn.transform.position, Quaternion.identity);
 

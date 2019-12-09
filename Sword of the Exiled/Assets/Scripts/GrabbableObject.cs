@@ -11,6 +11,10 @@ public class GrabbableObject : MonoBehaviourPun, IPunOwnershipCallbacks
     public bool stationary = false;
     public Transform player;
 
+    //Vector3 that has how far away the prism will follow.  There was an issue with rotations happening,
+    //so this is to prevent that issue from happening.
+    private Vector3 _offset;
+
     //So, this has player deal has something to do with moving and being carried.  We're going
     //to set this to work with a trigger.  When this has a player, it can be moved.
     private bool hasPlayer = false;
@@ -59,11 +63,6 @@ public class GrabbableObject : MonoBehaviourPun, IPunOwnershipCallbacks
                 if (beingCarried)
                 {
                     //Debug.Log("Turn off being carried.");
-                    //We want to set the prism down, so do that now.
-                    GetComponent<Rigidbody>().isKinematic = true;
-
-                    //prevent it from following the player
-                    transform.parent = null;
 
                     //Lastly, turn being carried off.
                     beingCarried = false;
@@ -81,21 +80,20 @@ public class GrabbableObject : MonoBehaviourPun, IPunOwnershipCallbacks
                         base.photonView.RequestOwnership();
                     }
 
-                    //Now that we have ownership as well, we will set the prism to be moveable.
-                    GetComponent<Rigidbody>().isKinematic = true;
-
-                    //Set the parent transform of this so that it will follow owner around.
-                    transform.parent = player;
+                    //Calculate and store the offset value by getting the distance between the player's position and camera's position.
+                    _offset = transform.position - player.transform.position;
 
                     //Lastly, we will show that this is being carried.
                     beingCarried = true;
                 }
             }
-        }
-        //We're just going to check now that it has no owner.  If so, it musn't be moveable.
-        else if(!stationary)
-        {
-            GetComponent<Rigidbody>().isKinematic = true;
+
+            //Now that we've done some checks, see if this is being carried.
+            if (beingCarried)
+            {
+                //Move this prism along with the player by the offset.
+                transform.position = player.transform.position + _offset;
+            }
         }
     }
 
@@ -132,7 +130,9 @@ public class GrabbableObject : MonoBehaviourPun, IPunOwnershipCallbacks
     }
 
     /// <summary>
-    /// This will run when the player is no longer near the prism.
+    /// This will run when the player is no longer near the prism.  Because of the floor issues, there is
+    /// also a problem with exiting the trigger before we actually want to.  So, we'll only do this
+    /// if the player has intentionally set the prism down.
     /// </summary>
     /// <param name="other"></param>
     public void OnTriggerExit(Collider other)
@@ -142,7 +142,7 @@ public class GrabbableObject : MonoBehaviourPun, IPunOwnershipCallbacks
         if (!stationary)
         {
             //Make sure the other collider is the player.
-            if (other.tag == "Player")
+            if (other.tag == "Player" && !beingCarried)
             {
                 //Set the hasPlayer boolean to false.
                 hasPlayer = false;
