@@ -214,9 +214,10 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
             //Stop room from listing as visible for others.
             PhotonNetwork.CurrentRoom.IsVisible = false;
-            
+
             //Load the scene.
             PhotonNetwork.LoadLevel("mapScene");
+            //PhotonNetwork.LoadLevel("DeleteMe");
         }
     }
 

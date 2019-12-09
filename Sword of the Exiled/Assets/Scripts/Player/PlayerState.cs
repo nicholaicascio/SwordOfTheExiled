@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// This is the base class for a player state.  It has the basic setup and tracks things we will use.
+/// </summary>
 public abstract class PlayerState
 {
     protected PlayerStateController playerStateController;

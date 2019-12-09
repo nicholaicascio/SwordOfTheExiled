@@ -203,6 +203,16 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6036131559290609858, guid: d21a764572accb64daf17052f88ec133,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036131559290609858, guid: d21a764572accb64daf17052f88ec133,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5952584685853151234, guid: d21a764572accb64daf17052f88ec133,
         type: 3}
       propertyPath: m_Controller
@@ -223,6 +233,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 97026485}
+    - target: {fileID: 558517181807757385, guid: d21a764572accb64daf17052f88ec133,
+        type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1252790570}
     - target: {fileID: 4916679115189514993, guid: d21a764572accb64daf17052f88ec133,
         type: 3}
       propertyPath: m_IsActive
@@ -345,6 +360,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1252790570 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6036131559290609859, guid: d21a764572accb64daf17052f88ec133,
+    type: 3}
+  m_PrefabInstance: {fileID: 131520019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1455809923
 GameObject:
   m_ObjectHideFlags: 0

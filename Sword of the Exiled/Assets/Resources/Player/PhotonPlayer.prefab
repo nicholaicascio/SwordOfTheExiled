@@ -3627,8 +3627,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: sprinting
+  - Type: 4
+    SynchronizeType: 0
+    Name: sneaking
+  - Type: 4
+    SynchronizeType: 0
+    Name: idle
+  - Type: 4
+    SynchronizeType: 0
+    Name: walking
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &3362187944503019624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3679,7 +3693,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11346c755ccdcd54fac96adadaecf1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 6036131559290609859}
   animator: {fileID: 5952584685853151234}
+  isSneaking: 0
+  isSprinting: 0
+  movement: {x: 0, y: 0, z: 0}
+  moveSpeed: 0
+  walkingSpeed: 5
+  sneakingSpeed: 2.5
+  sprintingSpeed: 8
 --- !u!114 &3001629381167689167
 MonoBehaviour:
   m_ObjectHideFlags: 0

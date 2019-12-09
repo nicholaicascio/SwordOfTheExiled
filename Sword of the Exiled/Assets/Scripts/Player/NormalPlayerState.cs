@@ -3,12 +3,11 @@
 public class NormalPlayerState : PlayerState
 {
     private PlayerStateController.PlayerStateType pst = PlayerStateController.PlayerStateType.normal;
-    private Vector3 movement;
 
     /// <summary>
     /// This is the constructor.  Just use it.
     /// </summary>
-    /// <param name="stateController">State controller script that called this state.  It should pass itself so this has a reference.</param>
+    /// <param name="playerStateController">State controller script that called this state.  It should pass itself so this has a reference.</param>
     public NormalPlayerState(PlayerStateController playerStateController) : base(playerStateController) { }
 
     /// <summary>
@@ -21,6 +20,9 @@ public class NormalPlayerState : PlayerState
         animator.SetBool("sneaking", false);
         animator.SetBool("idle", false);
         animator.SetBool("walking", true);
+
+        //Set player move speed.
+        playerStateController.moveSpeed = playerStateController.walkingSpeed;
 
         //Debug.Log("Player state is normal");
         pst = PlayerStateController.PlayerStateType.normal;
@@ -36,8 +38,6 @@ public class NormalPlayerState : PlayerState
     /// </summary>
     public override void Act()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.z = Input.GetAxisRaw("Vertical");
     }
 
     /// <summary>
@@ -45,22 +45,26 @@ public class NormalPlayerState : PlayerState
     /// </summary>
     public override void CheckTransitions()
     {
-        //First, check to see if there is any motion.
-        if (movement != Vector3.zero)
+        //Easy check first.  See if the player stopped moving.
+        if (playerStateController.movement == Vector3.zero)
         {
-            //If ever we hit the run button, start sprinting.  
-            if (Input.GetButton("Sprint"))
+            //We're clearly not sneaking as we are in the normal state, so just do the normal wait state.
+            playerStateController.SetPlayerState(new WaitPlayerState(playerStateController));
+        }
+        else
+        {
+            //It doesn't particularly matter which order we check for these in.  So let's check for sprint first.
+            if (playerStateController.isSprinting)
             {
+                //Go into sprint mode.
                 playerStateController.SetPlayerState(new SprintingPlayerState(playerStateController));
             }
-            else if (Input.GetButtonDown("Sneak") == true)
+            //Now, we'll check to see if we are sneaking.
+            else if (playerStateController.isSneaking)
             {
                 playerStateController.SetPlayerState(new SneakingPlayerState(playerStateController));
             }
         }
-
-        //No motion detected, so we will need to set this back to wait state.
-        playerStateController.SetPlayerState(new WaitPlayerState(playerStateController));
     }
 
     /// <summary>

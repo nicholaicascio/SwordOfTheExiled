@@ -3,12 +3,11 @@
 public class SneakingPlayerState : PlayerState
 {
     private PlayerStateController.PlayerStateType pst = PlayerStateController.PlayerStateType.sneaking;
-    private Vector3 movement;
 
     /// <summary>
     /// This is the constructor.  Just use it.
     /// </summary>
-    /// <param name="stateController">State controller script that called this state.  It should pass itself so this has a reference.</param>
+    /// <param name="playerStateController">State controller script that called this state.  It should pass itself so this has a reference.</param>
     public SneakingPlayerState(PlayerStateController playerStateController) : base(playerStateController) { }
 
     /// <summary>
@@ -21,6 +20,9 @@ public class SneakingPlayerState : PlayerState
         animator.SetBool("sneaking", true);
         animator.SetBool("idle", false);
         animator.SetBool("walking", false);
+
+        //Set player move speed.
+        playerStateController.moveSpeed = playerStateController.sneakingSpeed;
 
         //Debug.Log("Player state is sneaking");
         pst = PlayerStateController.PlayerStateType.sneaking;
@@ -36,8 +38,6 @@ public class SneakingPlayerState : PlayerState
     /// </summary>
     public override void Act()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.z = Input.GetAxisRaw("Vertical");
     }
 
     /// <summary>
@@ -45,22 +45,31 @@ public class SneakingPlayerState : PlayerState
     /// </summary>
     public override void CheckTransitions()
     {
-        //First, check to see if there is any motion.
-        if (movement != Vector3.zero)
+        //Easy check first.  See if the player stopped moving.
+        if (playerStateController.movement == Vector3.zero)
         {
-            //If ever we hit the run button, start sprinting.  
-            if (Input.GetButton("Sprint"))
+            //So, if we are sneaking, and we stop moving, we know we need to go
+            //to the sneaky wait state.  It's not possible to need to go to the
+            //regular wait state, so don't even bother.
+            playerStateController.SetPlayerState(new SneakyWaitPlayerState(playerStateController));
+        }
+        else
+        {
+            //We are still moving, but we'll need to see if the sprint button has been toggled off
+            //or if we've been sent into sneak mode.
+            //First, we'll check sprint mode.  We do this because going into sprint mode turns the sneak
+            //off, so we don't want to check sneak first because we won't know if we're sprinting or just walking.
+            if (playerStateController.isSprinting)
             {
+                //Go into sprint mode.
                 playerStateController.SetPlayerState(new SprintingPlayerState(playerStateController));
             }
-            else if (Input.GetButtonDown("Sneak") == true)
+            //Now, we'll check to see if we have stopped sneaking.  If so, go into normal player mode.
+            else if (!playerStateController.isSneaking)
             {
                 playerStateController.SetPlayerState(new NormalPlayerState(playerStateController));
             }
         }
-
-        //So, there is no motion.  This means, we are going into the sneaky wait state.
-        playerStateController.SetPlayerState(new SneakyWaitPlayerState(playerStateController));
     }
 
     /// <summary>

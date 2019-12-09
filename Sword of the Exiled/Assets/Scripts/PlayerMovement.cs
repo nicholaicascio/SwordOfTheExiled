@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// I think I'm going to stop using this and move everything into the PlayerStateController.  Just for ease of doing things.
+/// </summary>
 public class PlayerMovement : MonoBehaviourPun
 {
     public float moveSpeed = 3f;
@@ -17,19 +20,20 @@ public class PlayerMovement : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        //Check to see if the player is mine.  If not, find the camera and deactivate it.
+        //Check to see if the player is mine.  If not, find the camera and deactivate it.  Used for multiplayer.
         if (!base.photonView.IsMine)
         {
             Camera cam = GetComponentInChildren<Camera>();
             cam.enabled = false;
         }
     }
+
     // Update is called once per frame
     void Update()
     {
         if (base.photonView.IsMine)
         {
-            Debug.Log("Player seen!");
+            //Debug.Log("Player seen!");
             //Input
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.z = Input.GetAxisRaw("Vertical");
