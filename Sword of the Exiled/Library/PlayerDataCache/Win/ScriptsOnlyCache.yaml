@@ -1,5 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor.dll:
+    - ReadmeEditor
     Assembly-CSharp-firstpass.dll:
     - UnityStandardAssets.Characters.FirstPerson.FirstPersonController
     - UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter
@@ -29,6 +31,7 @@ ScriptsOnlyBuild:
     - Prism
     - PrismSpawner
     - RandomCustomPropertyGenerator
+    - Readme
     - Reciever
     - RoomListing
     - RoomListingsMenu
@@ -54,6 +57,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -2838,4 +2843,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenuScene.unity
   - Assets/Scenes/mapScene.unity
   - Assets/Scenes/CreditsScene.unity
-  playerPath: D:/Documents/GIMM 400/Sword of the Exiled/Builds/Sword of the Exiled.exe
+  playerPath: D:/GIMM/GIMM 400 Advanced Topics/SwordOfTheExiled/Sword of the Exiled/Bin/Sword
+    of the Exiled.exe
