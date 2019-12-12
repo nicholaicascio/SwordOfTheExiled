@@ -23,7 +23,15 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
     /// <param name="canvases"></param>
     public void FirstInitialize(RoomsCanvases canvases)
     {
+        //Debug.Log("FirstInitialize for the RoomListingsMenu");
         _roomsCanvases = canvases;
+
+        //Alright, so the lobby join is the only way I know to force a room update.
+        //Normally, joining the lobby happens immediately after connecting.  However, 
+        //we don't have our canvases up and running.  So, we need to do it again after
+        //we get the canvas looking for rooms.  By doing so, this updates the room list
+        //and our OnRoomListUpdate code will run.
+        PhotonNetwork.JoinLobby();
     }
 
     /// <summary>

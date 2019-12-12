@@ -73,7 +73,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 272}
   m_MaxSize: {x: 14006, y: 10022}
   vertical: 0
-  controlID: 539
+  controlID: 32
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 394}
   m_MaxSize: {x: 14006, y: 14044}
   vertical: 1
-  controlID: 538
+  controlID: 111
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 444}
   m_MaxSize: {x: 4004, y: 8044}
   vertical: 1
-  controlID: 516
+  controlID: 170
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -247,7 +247,7 @@ MonoBehaviour:
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: _Game Dev
+  m_LastLoadedLayoutName: 
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 444}
   m_MaxSize: {x: 22012, y: 14044}
   vertical: 0
-  controlID: 557
+  controlID: 191
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -402,9 +402,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 242e0100
-      m_LastClickedID: 77348
-      m_ExpandedIDs: c6d1f3ff08d2f3ff42d2f3ffa0d4f3ffea2f01001e3201000e360100
+      m_SelectedIDs: ee330000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 62f8ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -503,7 +503,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/PhotonMultiplayer/UI/Rooms
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -516,7 +516,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 66320000
     m_LastClickedID: 12902
-    m_ExpandedIDs: ffffffff0000000082910000729300007e930000ac930000b693000000940000309400004a95000074950000869600008a970000de980000f298000086990000f89900004c9b0000749b0000969b0000189c0000ac9c0000fa9c00003c9d0000a89d0000d29e0000e09e0000f49e00002a9f00007c9f00000ca1000056a100007ea1000090a1000042a2000048a200006aa20000
+    m_ExpandedIDs: 00000000f2390000123d0000203d0000563d0000663d0000d63d0000ec3f0000384000009a410000d4420000764400008e4400004c450000f04500005448000084480000e04800008a490000564a0000e64a00003a4b0000d04b0000924d0000aa4d0000d84d00001a4e00002a4e0000aa4e00009651000050520000a8520000c4520000aa530000b0530000e6530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -544,21 +544,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 240}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff0000000082910000729300007e930000ac930000b6930000009400004a95000074950000869600008a970000de980000f298000086990000f89900004c9b0000749b0000969b0000189c0000ac9c0000fa9c00003c9d0000a89d0000d29e0000e09e0000f49e00001c9f00002a9f00007c9f00000ca1000056a100007ea1000090a1000042a2000048a200006aa20000
+    m_ExpandedIDs: ffffffff00000000f2390000123d0000203d0000563d0000663d0000d63d0000ec3f0000384000009a410000d44200008e4400004c450000f04500005448000084480000e04800008a490000564a0000e64a00003a4b0000d04b0000924d0000aa4d0000d84d00001a4e00002a4e000050520000a8520000aa530000b0530000e6530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Lobby
-      m_OriginalName: Lobby
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 39064
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
