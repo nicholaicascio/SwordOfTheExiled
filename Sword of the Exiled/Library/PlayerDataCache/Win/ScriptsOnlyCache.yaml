@@ -58,6 +58,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -95,14 +97,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Experimental.TerrainAPI.VoronoiNoise
     Unity.TerrainTools.dll:
     - TerrainGroup
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -165,9 +159,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12182}
     - Class: 114
-      Script: {instanceID: 12726}
+      Script: {instanceID: 12730}
     - Class: 114
-      Script: {instanceID: 13410}
+      Script: {instanceID: 13414}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -334,53 +328,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12184}
     - Class: 114
-      Script: {instanceID: 12222}
+      Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 12260}
+      Script: {instanceID: 12224}
     - Class: 114
-      Script: {instanceID: 12382}
+      Script: {instanceID: 12262}
     - Class: 114
-      Script: {instanceID: 12424}
+      Script: {instanceID: 12384}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12426}
     - Class: 114
-      Script: {instanceID: 12488}
+      Script: {instanceID: 12474}
     - Class: 114
-      Script: {instanceID: 12512}
+      Script: {instanceID: 12486}
     - Class: 114
-      Script: {instanceID: 12526}
+      Script: {instanceID: 12492}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12516}
     - Class: 114
-      Script: {instanceID: 12726}
+      Script: {instanceID: 12530}
     - Class: 114
-      Script: {instanceID: 12798}
+      Script: {instanceID: 12532}
     - Class: 114
-      Script: {instanceID: 12950}
+      Script: {instanceID: 12730}
     - Class: 114
-      Script: {instanceID: 13184}
+      Script: {instanceID: 12802}
     - Class: 114
-      Script: {instanceID: 13204}
+      Script: {instanceID: 12954}
     - Class: 114
-      Script: {instanceID: 13258}
+      Script: {instanceID: 13188}
     - Class: 114
-      Script: {instanceID: 13280}
+      Script: {instanceID: 13208}
     - Class: 114
-      Script: {instanceID: 13296}
+      Script: {instanceID: 13262}
     - Class: 114
-      Script: {instanceID: 13410}
+      Script: {instanceID: 13284}
     - Class: 114
-      Script: {instanceID: 13442}
+      Script: {instanceID: 13300}
     - Class: 114
-      Script: {instanceID: 13470}
+      Script: {instanceID: 13414}
     - Class: 114
-      Script: {instanceID: 13482}
+      Script: {instanceID: 13446}
     - Class: 114
-      Script: {instanceID: 13538}
+      Script: {instanceID: 13474}
     - Class: 114
-      Script: {instanceID: 53864}
+      Script: {instanceID: 13486}
     - Class: 114
-      Script: {instanceID: 59116}
+      Script: {instanceID: 13542}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -531,39 +525,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12068}
     - Class: 114
-      Script: {instanceID: 12376}
+      Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 12424}
+      Script: {instanceID: 12378}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12426}
     - Class: 114
-      Script: {instanceID: 12526}
+      Script: {instanceID: 12474}
     - Class: 114
-      Script: {instanceID: 12574}
+      Script: {instanceID: 12486}
     - Class: 114
-      Script: {instanceID: 12684}
+      Script: {instanceID: 12530}
     - Class: 114
-      Script: {instanceID: 12726}
+      Script: {instanceID: 12578}
     - Class: 114
-      Script: {instanceID: 12798}
+      Script: {instanceID: 12688}
     - Class: 114
-      Script: {instanceID: 13184}
+      Script: {instanceID: 12730}
     - Class: 114
-      Script: {instanceID: 13196}
+      Script: {instanceID: 12802}
     - Class: 114
-      Script: {instanceID: 13204}
+      Script: {instanceID: 13188}
     - Class: 114
-      Script: {instanceID: 13258}
+      Script: {instanceID: 13200}
     - Class: 114
-      Script: {instanceID: 13280}
+      Script: {instanceID: 13208}
     - Class: 114
-      Script: {instanceID: 13410}
+      Script: {instanceID: 13262}
     - Class: 114
-      Script: {instanceID: 13538}
+      Script: {instanceID: 13284}
     - Class: 114
-      Script: {instanceID: 53864}
+      Script: {instanceID: 13414}
     - Class: 114
-      Script: {instanceID: 59116}
+      Script: {instanceID: 13542}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -633,7 +627,7 @@ ScriptsOnlyBuild:
     className: DocLinkButton
   - hash:
       serializedVersion: 2
-      Hash: a59ed18a8389bbf3821bc92155325bc2
+      Hash: 75e98b826f89ae8c0d5ab631ccb72273
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PressEToVignette
@@ -1407,7 +1401,7 @@ ScriptsOnlyBuild:
     className: BestRegionInPrefsProperty
   - hash:
       serializedVersion: 2
-      Hash: 8d2a3bcbe16ccb43a0285529ff6ab75c
+      Hash: 330d2b76cf147b71064587610cd28902
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerStateController
@@ -2085,6 +2079,12 @@ ScriptsOnlyBuild:
     className: LobbyMainPanel
   - hash:
       serializedVersion: 2
+      Hash: 2196d8f76d69f483799f697a52d23148
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraFollow
+  - hash:
+      serializedVersion: 2
       Hash: af0537dabf7072720b1497b88b975216
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -2269,6 +2269,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StateController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GoodGuyManager
   - hash:
       serializedVersion: 2
       Hash: 0b24359b178f2110b72f9b386ac3b17c
@@ -2869,18 +2875,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: AutoMobileShaderSwitch
-  - hash:
-      serializedVersion: 2
-      Hash: 2196d8f76d69f483799f697a52d23148
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraFollow
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GoodGuyManager
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenuScene.unity

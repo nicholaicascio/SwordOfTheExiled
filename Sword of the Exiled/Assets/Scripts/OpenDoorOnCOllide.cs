@@ -22,7 +22,7 @@ public class OpenDoorOnCOllide : MonoBehaviourPun
     /// </summary>
     private void OnEnable()
     {
-        Debug.Log("Adding listener for door opening.");
+        //Debug.Log("Adding listener for door opening.");
         PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_OpenFourthRoomDoor;
     }
 
@@ -39,7 +39,7 @@ public class OpenDoorOnCOllide : MonoBehaviourPun
     /// </summary>
     private void RemoveEvent_OpenFourthRoomDoorListener()
     {
-        Debug.Log("Removing listener for door opening.");
+        //Debug.Log("Removing listener for door opening.");
         PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_OpenFourthRoomDoor;
     }
 
@@ -52,11 +52,11 @@ public class OpenDoorOnCOllide : MonoBehaviourPun
     /// <param name="obj"></param>
     private void NetworkingClient_OpenFourthRoomDoor(EventData obj)
     {
-        Debug.Log("NetworkingClient_OpenFourthRoomDoor just heard an event.  Listening for " + OPEN_FOURTH_ROOM_DOOR + "; heard " + obj.Code);
+        //Debug.Log("NetworkingClient_OpenFourthRoomDoor just heard an event.  Listening for " + OPEN_FOURTH_ROOM_DOOR + "; heard " + obj.Code);
         //First, check for our event.
         if (obj.Code == OPEN_FOURTH_ROOM_DOOR)
         {
-            Debug.Log("NetworkingClient_OpenFourthRoomDoor is responding to the event.");
+            //Debug.Log("NetworkingClient_OpenFourthRoomDoor is responding to the event.");
             //This is it.  We'll go ahead and open the door.
             Animator anim = targetObject.GetComponent<Animator>();
             anim.SetBool("isOpen", true);
@@ -81,12 +81,12 @@ public class OpenDoorOnCOllide : MonoBehaviourPun
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("The open door trigger has been triggered!");
+        //Debug.Log("The open door trigger has been triggered!");
 
         //Check to see if we collided with a player.
         if (other.tag == "Player")
         {
-            Debug.Log("Player entered the trigger zone!");
+            //Debug.Log("Player entered the trigger zone!");
             //For the sake of learing some stuff and making sure we do this correctly elsewhere,
             //we will build all the different parts of the event, then actually raise the event.
             //It's really not necessary for most of what we do in this game, but it's really good
@@ -119,7 +119,7 @@ public class OpenDoorOnCOllide : MonoBehaviourPun
         }
         else
         {
-            Debug.Log("A non player entered the trigger zone.");
+            //Debug.Log("A non player entered the trigger zone.");
         }
     }
 }

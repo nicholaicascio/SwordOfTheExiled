@@ -30,7 +30,7 @@ public class TransitionToCredits : MonoBehaviourPun
     /// </summary>
     private void OnEnable()
     {
-        Debug.Log("Adding listener for transition to credits");
+        //Debug.Log("Adding listener for transition to credits");
         PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_CreditsEvent;
     }
 
@@ -40,13 +40,13 @@ public class TransitionToCredits : MonoBehaviourPun
     /// <param name="obj"></param>
     private void NetworkingClient_CreditsEvent(EventData obj)
     {
-        Debug.Log("NetworkingClient_CreditsEvent just heard an event.  Listening for " + TRANS_TO_CREDITS + "; heard " + obj.Code);
+        //Debug.Log("NetworkingClient_CreditsEvent just heard an event.  Listening for " + TRANS_TO_CREDITS + "; heard " + obj.Code);
         //First, check for our event.
         if (obj.Code == TRANS_TO_CREDITS)
         {
-            Debug.Log("NetworkingClient_CreditsEvent is responding to the event.");
+            //Debug.Log("NetworkingClient_CreditsEvent is responding to the event.");
             //This is it.  We'll go ahead and transition to credits
-            Debug.Log("collide");
+            //Debug.Log("collide");
             SceneManager.LoadScene("CreditsScene");
 
             //Now that we have opened the door, remove the listener so this doesn't happen again.
@@ -60,7 +60,7 @@ public class TransitionToCredits : MonoBehaviourPun
     /// </summary>
     private void RemoveEvent_TransToCredits()
     {
-        Debug.Log("Removing listener for door opening.");
+        //Debug.Log("Removing listener for door opening.");
         PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_CreditsEvent;
     }
 

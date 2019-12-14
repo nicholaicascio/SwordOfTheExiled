@@ -7,6 +7,13 @@ using UnityEngine;
 /// </summary>
 public class PlayerStateController : MonoBehaviourPun
 {
+    //This is going to be a reference to the camera for the player.  There are time when we want to interact with the camera,
+    //but in order to get some of the game mechanics to work without adding player spin to the gameplay, certain things were
+    //moved out of the actual character into the controller class.  So we are now just going to get a reference to the camera.
+    //Since this state controller ends up being the main controller over all, this is where the reference will live.
+    [SerializeField]
+    public Camera mainCamera;
+
     //Create an enum for the states that we'll use I guess.
     public enum PlayerStateType
     {
@@ -50,13 +57,6 @@ public class PlayerStateController : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        //Check to see if the player is mine.  If not, find the camera and deactivate it.  Used for multiplayer.
-        //if (!base.photonView.IsMine)
-        //{
-        //    Camera cam = GetComponentInChildren<Camera>();
-        //    cam.enabled = false;
-        //}
-
         //Set defaults for motion tracking variables.
         isSneaking = false;
         isSprinting = false;
@@ -81,7 +81,7 @@ public class PlayerStateController : MonoBehaviourPun
         //hold downs anymore.
         if (Input.GetButtonDown("Sneak") == true)
         {
-            Debug.Log("Player toggled sneaking");
+            //Debug.Log("Player toggled sneaking");
             //The player hit the sneaking button.  So set sneaking to the opposite of whatever it is.
             isSneaking = !isSneaking;
 
@@ -90,7 +90,7 @@ public class PlayerStateController : MonoBehaviourPun
         }
         else if (Input.GetButtonDown("Sprint") == true)
         {
-            Debug.Log("Player toggled sprinting");
+            //Debug.Log("Player toggled sprinting");
 
             //Player hit the sprint button.  Toggle it.
             isSprinting = !isSprinting;
@@ -149,12 +149,5 @@ public class PlayerStateController : MonoBehaviourPun
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
         }
-        //transform.Translate(movement * moveSpeed * Time.fixedDeltaTime, Space.World);
-
-        //Vector3 movement2 = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
-        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
-
-
-        //transform.Translate(movement2 * moveSpeed * Time.fixedDeltaTime, Space.World);
     }
 }

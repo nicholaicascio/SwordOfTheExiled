@@ -58,7 +58,6 @@ public class GuardSight : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         //Make sure we have everything we need.  If not, just skip this.
@@ -91,8 +90,9 @@ public class GuardSight : MonoBehaviour
     {
         //Condition 1:
         //Check to see if the object in our sphere is the player.
-        if (other.gameObject == player)
+        if (other.tag == "Player")
         {
+            player = other.gameObject;
             //Debug.Log("Player entered the danger zone");
             //Default player in sight to false just in case the other conditions are not met.
             playerInSight = false;
@@ -148,7 +148,7 @@ public class GuardSight : MonoBehaviour
                 {
                     personalLastSighting = player.transform.position;
                     personalLastSightingTransform = player.transform;
-                    Debug.Log("Player heard in sprinting state.");
+                    //Debug.Log("Player heard in sprinting state.");
                     playerIsHeard = true;
                 }
             }
@@ -162,7 +162,7 @@ public class GuardSight : MonoBehaviour
                 {
                     personalLastSighting = player.transform.position;
                     personalLastSightingTransform = player.transform;
-                    Debug.Log("Player heard in normal state");
+                    //Debug.Log("Player heard in normal state");
                     playerIsHeard = true;
                 }
 
@@ -172,8 +172,9 @@ public class GuardSight : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.tag == "Player")
         {
+            //Debug.Log("Player has exited the danger zone");
             playerInSight = false;
         }
     }
@@ -227,7 +228,7 @@ public class GuardSight : MonoBehaviour
         //}
 
         //Debug.Log("SO, there are " + allWayPoints.Length + " points we are calculating from " + allWayPoints[0] + " to " + allWayPoints[allWayPoints.Length - 1]);
-        
+
 
         //Send the total distance we calculated back.
         return pathLength;

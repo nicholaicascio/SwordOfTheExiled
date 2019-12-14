@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 2175520140651743198}
   m_Layer: 0
   m_Name: GoodGuy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1811,6 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11346c755ccdcd54fac96adadaecf1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 3350047471811908513}
   rb: {fileID: 3350047471514842962}
   animator: {fileID: 3396474959590705043}
   isSneaking: 0
