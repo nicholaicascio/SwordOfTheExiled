@@ -44,6 +44,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnConnectedToMaster()
     {
+        PhotonNetwork.LocalPlayer.NickName = MasterManager.GameSettings.NickName;
         Debug.Log("Connected to server.",this);
         Debug.Log("Nickname: " + PhotonNetwork.LocalPlayer.NickName, this);
 
